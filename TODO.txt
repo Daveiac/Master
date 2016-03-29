@@ -12,6 +12,8 @@ flyvende enemy
 flere character animations: jumping, getting hurt.
 variabel inventory
 Timer på level?
+attack animation på enemies
+enemy knockback?
 
 Nye items/ interactions:
 Bedre items/ byggeklosser // en slags hack?
