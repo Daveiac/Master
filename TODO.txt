@@ -24,6 +24,5 @@ lokkemat
 nøkler?
 
 Bugs:
-fikse at enemies flipper rett
 begrens hvor ting kan settes ut
 Organisere koden + mappestruktur bedre

@@ -126,16 +126,13 @@ void AEnemy::UpdateCharacter()
 	// Now setup the rotation of the controller based on the direction we are travelling
 	float TravelDirection = GetVelocity().X;
 	// Set the rotation so that the character faces his direction of travel.
-	if (Controller != nullptr)
+	if (TravelDirection < 0.0f)
 	{
-		if (TravelDirection < 0.0f)
-		{
-			Controller->SetControlRotation(FRotator(0.0, 180.0f, 0.0f));
-		}
-		else if (TravelDirection > 0.0f)
-		{
-			Controller->SetControlRotation(FRotator(0.0f, 0.0f, 0.0f));
-		}
+		SetActorRotation(FQuat(0, 0, 0, 0));
+	}
+	else if (TravelDirection > 0.0f)
+	{
+		SetActorRotation(FQuat(0, 0, 180, 0));
 	}
 }
 
