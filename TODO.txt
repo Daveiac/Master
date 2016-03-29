@@ -1,0 +1,27 @@
+Lage fete levler:
+Mer interaction mellom character og spiller. flytte items, ødelegge/respawne
+Gjøre spillerene avhengige av hverandre.
+Variere mellom stress og puzzle.
+Tenke på kommunikasjon mellom spillerene.
+p2 bruker items, feller, lokkemat etc.
+p2 kan endre på kamera og gravitasjon
+
+Features:
+få med move
+flyvende enemy
+flere character animations: jumping, getting hurt.
+variabel inventory
+Timer på level?
+
+Nye items/ interactions:
+Bedre items/ byggeklosser // en slags hack?
+teleportere
+stiger
+lodd
+lokkemat
+nøkler?
+
+Bugs:
+fikse at enemies flipper rett
+begrens hvor ting kan settes ut
+Organisere koden + mappestruktur bedre
