@@ -46,7 +46,6 @@ void ASideScroller1GameMode::Tick(float DeltaSeconds)
 	if (GrabbedItem)
 	{
 		FVector WorldPos = GetMouseWorldPos();
-		UE_LOG(LogTemp, Warning, TEXT("MousePos: %d, %d, %d"), WorldPos.X, WorldPos.Y, WorldPos.Z)
 		GrabbedItem->PaperSpriteComponent->SetWorldLocation(WorldPos);
 	}
 }
@@ -64,7 +63,6 @@ void ASideScroller1GameMode::AddToInventory(AItem *AnItem)
 
 void ASideScroller1GameMode::OnInventorySlotPressed(int32 Slot)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Inventory slot pressed: %d"), Slot);
 	FVector WorldPos = GetMouseWorldPos();
 	FRotator WorldRot(0.0f, 0.0f, 0.0f);
 	GrabbedItem = Inventory[Slot];
