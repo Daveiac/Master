@@ -15,8 +15,14 @@ class SIDESCROLLER1_API AEnemy : public APaperCharacter
 
 	AEnemy();
 
+	UPROPERTY(EditAnywhere, Category = "Bait")
+	bool bIsBaitable;
 	UTextRenderComponent* TextComponent;
+	class ABait *CurrentBait;
+	FTimerHandle EatingTimer;
 	virtual void Tick(float DeltaSeconds) override;
+	ABait* GetClosestBait();
+	void EatBait();
 
 protected:
 	// The animation to play while walking around

@@ -2,9 +2,12 @@
 
 #include "SideScroller1.h"
 #include "PaperSpriteComponent.h"
+#include "MovingPlatform.h"
 #include "Switch.h"
 
-// Sets default values
+const FString ASwitch::OffSpriteAssetName = "PaperSprite'/Game/2DSideScroller/Sprites/Items/switchMid_Sprite.switchMid_Sprite'";
+const FString ASwitch::OnSpriteAssetName = "PaperSprite'/Game/2DSideScroller/Sprites/Items/switchLeft_Sprite.switchLeft_Sprite'";
+
 ASwitch::ASwitch()
 {
 	// Setup the assets
@@ -13,8 +16,8 @@ ASwitch::ASwitch()
 		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> OffSprite;
 		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> OnSprite;
 		FConstructorStatics()
-			: OffSprite(TEXT("PaperSprite'/Game/2DSideScroller/Sprites/Items/switchMid_Sprite.switchMid_Sprite'"))
-			, OnSprite(TEXT("PaperSprite'/Game/2DSideScroller/Sprites/Items/switchLeft_Sprite.switchLeft_Sprite'"))
+			: OffSprite(*OffSpriteAssetName)
+			, OnSprite(*OnSpriteAssetName)
 		{
 		}
 	};
@@ -30,6 +33,7 @@ ASwitch::ASwitch()
 	bIsActivated = false;
 	bIsImpulseSwitch = false;
 	ImpulseTimer = 0.0f;
+	Platforms = TArray<AMovingPlatform*>();
 }
 
 void ASwitch::Activate()
@@ -41,15 +45,30 @@ void ASwitch::Activate()
 		FTimerHandle Impulse;
 		GetWorldTimerManager().SetTimer(Impulse, this, &ASwitch::Deactivate, ImpulseTimer);
 	}
+	UpdatePlatforms();
 }
 
 void ASwitch::Deactivate()
 {
 	bIsActivated = false;
 	SpriteComponent->SetSprite(OffSprite);
+	UpdatePlatforms();
 }
 
 void ASwitch::NotifyActorOnClicked()
 {
 	(bIsActivated) ? Deactivate() : Activate();
+	
+}
+
+void ASwitch::UpdatePlatforms()
+{
+	if (Platforms.Num())
+	{
+		for (int i = 0; i < Platforms.Num(); i++)
+		{
+			AMovingPlatform *Platform = Platforms[i];
+			Platform->bIsActive = bIsActivated;
+		}
+	}
 }

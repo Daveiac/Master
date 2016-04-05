@@ -202,4 +202,5 @@ void ASideScroller1Character::SetNotInvincible()
 void ASideScroller1Character::Kill()
 {
 	Destroy();
+	//UGameplayStatics::OpenLevel(GetWorld(), FName(*UGameplayStatics::GetCurrentLevelName(GetWorld())));
 }

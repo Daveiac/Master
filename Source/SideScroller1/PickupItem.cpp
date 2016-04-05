@@ -4,6 +4,7 @@
 #include "PaperSpriteComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "SideScroller1GameMode.h"
+#include "SideScroller1Character.h"
 #include "PickupItem.h"
 
 
@@ -43,8 +44,11 @@ void APickupItem::NotifyActorBeginOverlap(AActor * OtherActor)
 {
 	if (ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(GetWorld())))
 	{
-		GameMode->AddToScore(ScoreValue);
-		Destroy();
+		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(OtherActor))
+		{
+			GameMode->AddToScore(ScoreValue);
+			Destroy();
+		}
 	}
 }
 

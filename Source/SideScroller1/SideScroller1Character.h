@@ -62,6 +62,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Health")
 	bool bIsInvincible;
 
+
 public:
 	ASideScroller1Character();
 

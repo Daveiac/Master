@@ -4,6 +4,7 @@
 #include "PaperFlipbookComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "SideScroller1Character.h"
+#include "Bait.h"
 #include "Enemy.h"
 
 AEnemy::AEnemy()
@@ -66,6 +67,9 @@ AEnemy::AEnemy()
 	bReplicates = true;
 
 	OnActorHit.AddDynamic(this, &AEnemy::OnHit);
+
+	bIsBaitable = false;
+	CurrentBait = nullptr;
 }
 
 void AEnemy::UpdateAnimation()
@@ -85,19 +89,65 @@ void AEnemy::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-
-	float yaw = Controller->GetControlRotation().Yaw + 1;
-	Controller->SetControlRotation(FRotator(0.0, yaw, 0.0f));
-
-	if (DetectionSphere->IsOverlappingActor(Character))
-	{
-		// Move towards the player
+	if (bIsBaitable)
+	{	// Move towards closest bait
+		if (!CurrentBait)
+			CurrentBait = GetClosestBait();
+		if (CurrentBait)
+		{
+			if (GetCapsuleComponent()->IsOverlappingActor(CurrentBait))
+			{
+				if (!GetWorldTimerManager().IsTimerActive(EatingTimer))
+					GetWorldTimerManager().SetTimer(EatingTimer, this, &AEnemy::EatBait, 1.0f, true, 0);  // TODO: Eating rate
+			}
+			else
+			{
+				float BaitX = CurrentBait->GetActorLocation().X;
+				float ThisX = GetActorLocation().X;
+				MoveRight((ThisX < BaitX) - (BaitX < ThisX));
+			}
+		}
+	}
+	if (!CurrentBait && DetectionSphere->IsOverlappingActor(Character))
+	{	// Move towards the player
 		float CharX = Character->GetActorLocation().X;
 		float ThisX = GetActorLocation().X;
 		MoveRight((ThisX < CharX) - (CharX < ThisX));
 	}
-
 	UpdateCharacter();
+}
+
+ABait* AEnemy::GetClosestBait()
+{
+	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	TArray<AActor*> AllBait;
+	ABait *Bait = nullptr;
+	DetectionSphere->GetOverlappingActors(AllBait, ABait::StaticClass());
+	if (AllBait.Num())
+	{	// Get closest bait
+		float XDistance = DetectionSphere->GetScaledSphereRadius();
+		for (int i = 0; i < AllBait.Num(); i++)
+		{  // TODO: Fix casting
+			float Diff = FMath::Abs((AllBait[i]->GetActorLocation().X - Character->GetActorLocation().X));
+			if (Diff < XDistance && (((ABait*)AllBait[i])->bIsEdible))
+			{
+				Bait = (ABait*)AllBait[i];
+				XDistance = Diff;
+			}
+		}
+	}
+	return Bait;
+}
+
+void AEnemy::EatBait()
+{
+	CurrentBait->BeEaten(1);  // TODO: Eating rate
+	if (!CurrentBait->bIsEdible)
+	{	// The bait is no longer edible, stop the timer
+		CurrentBait->Destroy();
+		CurrentBait = nullptr;
+		GetWorldTimerManager().ClearTimer(EatingTimer);
+	}
 }
 
 

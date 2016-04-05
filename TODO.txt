@@ -3,26 +3,28 @@ Mer interaction mellom character og spiller. flytte items, ødelegge/respawne
 Gjøre spillerene avhengige av hverandre.
 Variere mellom stress og puzzle.
 Tenke på kommunikasjon mellom spillerene.
-p2 bruker items, feller, lokkemat etc.
+p2 bruker items, brytere, lokkemat etc.
 p2 kan endre på kamera og gravitasjon
 
 Features:
+Items som plukkes opp er anderledes fra items som slippes ut.
 få med move
+lyd
 flyvende enemy
 flere character animations: jumping, getting hurt.
-variabel inventory
-Timer på level?
 attack animation på enemies
 enemy knockback?
+variabel inventory
+Timer på level?
 
 Nye items/ interactions:
-Bedre items/ byggeklosser // en slags hack?
+Bedre items/ byggeklosser
 teleportere
 stiger
-lodd
-lokkemat
+lodd med kjetting // vanskeliger enn antatt
 nøkler?
 
 Bugs:
 begrens hvor ting kan settes ut
 Organisere koden + mappestruktur bedre
+fikse fargebokser med enums og shit.
