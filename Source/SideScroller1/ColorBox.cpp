@@ -9,6 +9,7 @@
 // Sets default values
 AColorBox::AColorBox()
 {
+	PrimaryActorTick.bCanEverTick = true;
 	// Setup the assets
 	struct FConstructorStatics
 	{
@@ -25,16 +26,38 @@ AColorBox::AColorBox()
 	RootComponent = SpriteComponent;
 	SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 	Channel = 0;
+	FadeState = Normal;
+}
+
+void AColorBox::Tick(float DeltaSeconds)
+{
+	if (FadeState != Normal)
+	{
+		float FadeRate = (FadeState == FadeIn)? 1.f * DeltaSeconds : -1.f * DeltaSeconds;
+		FLinearColor SpriteColor = SpriteComponent->GetSpriteColor();
+		SpriteColor.A += FadeRate;
+		if (SpriteColor.A > 1.0f)
+		{
+			SpriteColor.A = 1.0f;
+			FadeState = Normal;
+		}
+		else if (SpriteColor.A < 0)
+		{
+			SpriteColor.A = 0.0f;
+			FadeState = Normal;
+			SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
+		}
+		SpriteComponent->SetSpriteColor(SpriteColor);
+	}
 }
 
 void AColorBox::Activate()
 {
 	SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
-	SpriteComponent->SetVisibility(true);
+	FadeState = FadeIn;
 }
 
 void AColorBox::Deactivate()
 {
-	SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
-	SpriteComponent->SetVisibility(false);
+	FadeState = FadeOut;
 }

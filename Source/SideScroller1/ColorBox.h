@@ -13,10 +13,14 @@ class SIDESCROLLER1_API AColorBox : public AActor
 UPROPERTY(EditAnywhere, Category = "Sprite")
 class UPaperSpriteComponent *SpriteComponent;
 
+enum FadingState { Normal, FadeIn, FadeOut };
+FadingState FadeState;
+
 public:
 	UPROPERTY(EditAnywhere, Category = "ColorBox")
 	int32 Channel;
 	AColorBox();
+	virtual void Tick(float DeltaSeconds) override;
 	void Activate();
 	void Deactivate();
 	
