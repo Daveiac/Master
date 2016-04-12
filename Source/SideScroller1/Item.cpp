@@ -34,7 +34,7 @@ AItem::AItem()
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	PaperSpriteComponent->SetSprite(PaperSprite);
+	PaperSpriteComponent->SetSprite(PickupSprite);
 }
 
 // Called every frame
@@ -75,6 +75,8 @@ void AItem::OnOverlapBegin(AActor *OtherActor)
 			bIsActive = false;
 			PaperSpriteComponent->SetVisibility(false);
 			PaperSpriteComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			if (PlacementSprite)
+				PaperSpriteComponent->SetSprite(PlacementSprite);
 			GameMode->AddToInventory(this);
 		}
 	}

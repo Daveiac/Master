@@ -19,6 +19,7 @@ FadingState FadeState;
 public:
 	UPROPERTY(EditAnywhere, Category = "ColorBox")
 	int32 Channel;
+	bool bIsActive;
 	AColorBox();
 	virtual void Tick(float DeltaSeconds) override;
 	void Activate();

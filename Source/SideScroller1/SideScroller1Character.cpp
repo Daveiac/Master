@@ -19,9 +19,13 @@ ASideScroller1Character::ASideScroller1Character()
 	{
 		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> RunningAnimationAsset;
 		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> IdleAnimationAsset;
+		ConstructorHelpers::FObjectFinderOptional<USoundWave> TakeDamageSound;
+		ConstructorHelpers::FObjectFinderOptional<USoundCue> FootstepsSound;
 		FConstructorStatics()
 			: RunningAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/RunningAnimation.RunningAnimation"))
 			, IdleAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/IdleAnimation.IdleAnimation"))
+			, TakeDamageSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/TakeDamage.TakeDamage'"))
+			, FootstepsSound(TEXT("SoundCue'/Game/2DSideScroller/Sound/SFX/Footstep_Cue.Footstep_Cue'"))
 		{
 		}
 	};
@@ -92,6 +96,16 @@ ASideScroller1Character::ASideScroller1Character()
 
 	// Setup health
 	Health = 10;
+	
+	// Create Sound Components
+	SoundDamageTaken = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("TakeDamage"));
+	SoundDamageTaken->SetSound(ConstructorStatics.TakeDamageSound.Get());
+	SoundDamageTaken->bAutoActivate = false;
+
+	SoundFootsteps = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("Footsteps"));
+	SoundFootsteps->SetSound(ConstructorStatics.FootstepsSound.Get());
+	SoundFootsteps->bAutoActivate = false;
+	SoundFootsteps->AttachTo(RootComponent);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -161,13 +175,15 @@ void ASideScroller1Character::UpdateCharacter()
 	if (Controller != nullptr)
 	{
 		if (TravelDirection < 0.0f)
-		{
 			Controller->SetControlRotation(FRotator(0.0, 180.0f, 0.0f));
-		}
 		else if (TravelDirection > 0.0f)
-		{
 			Controller->SetControlRotation(FRotator(0.0f, 0.0f, 0.0f));
-		}
+		
+		// Play footsteps sound
+		if (TravelDirection != 0 && GetCharacterMovement()->IsMovingOnGround() && !SoundFootsteps->IsPlaying())
+			SoundFootsteps->Play();
+		else if ((TravelDirection == 0 || !GetCharacterMovement()->IsMovingOnGround()) && SoundFootsteps->IsPlaying())
+			SoundFootsteps->Stop();
 	}
 }
 
@@ -181,12 +197,13 @@ void ASideScroller1Character::TakeDamage(int32 Damage)
 	}
 	FTimerHandle InvincibilityTimer;
 	bIsInvincible = true;
-	GetWorldTimerManager().SetTimer(InvincibilityTimer, this, &ASideScroller1Character::SetNotInvincible, 1.0f);
+	GetWorldTimerManager().SetTimer(InvincibilityTimer, this, &ASideScroller1Character::SetNotInvincible, 0.5f); // TODO variable invincibilitytimer
 
 	if (ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(GetWorld())))
 	{
 		GameMode->RefreshHearts();
 	}
+	SoundDamageTaken->Play();
 }
 
 int32 ASideScroller1Character::GetHealth()

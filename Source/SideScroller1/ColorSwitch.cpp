@@ -6,28 +6,28 @@
 
 void AColorSwitch::Activate()
 {
-	Super::Activate();
-	TTransArray<AActor*> Actors = GetLevel()->Actors;
-	for (int i = 0; i < Actors.Num(); i++)
-	{
-		if (AColorBox *ColorBox = Cast<AColorBox>(Actors[i]))
-		{
-			if (ColorBox->Channel == Channel)
-				ColorBox->Deactivate();
-		}
-	}
+	Toggle();
 }
 
 void AColorSwitch::Deactivate()
 {
-	Super::Deactivate();
+	Toggle();
+}
+
+void AColorSwitch::Toggle()
+{
+	(bIsActivated)? Super::Deactivate() : Super::Activate();
 	TTransArray<AActor*> Actors = GetLevel()->Actors;
 	for (int i = 0; i < Actors.Num(); i++)
 	{
 		if (AColorBox *ColorBox = Cast<AColorBox>(Actors[i]))
 		{
 			if (ColorBox->Channel == Channel)
-				ColorBox->Activate();
+			{
+
+				void(AColorBox::*FunctionColorBox)(void) = (ColorBox->bIsActive) ? &AColorBox::Deactivate : &AColorBox::Activate;
+				(ColorBox->*FunctionColorBox)();
+			}
 		}
 	}
 }

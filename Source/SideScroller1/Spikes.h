@@ -16,6 +16,8 @@ class UPaperSpriteComponent *SpriteComponent;
 UPROPERTY(EditAnywhere, Category = "Sprite")
 class UPaperSprite *Sprite;
 
+UPROPERTY(EditAnywhere, Category = "Sound")
+UAudioComponent *SpikeHitSound;
 
 public:	
 	// Sets default values for this actor's properties

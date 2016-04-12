@@ -32,7 +32,10 @@ public:
 	UPaperSpriteComponent* PaperSpriteComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item")
-	UPaperSprite* PaperSprite;
+	UPaperSprite* PickupSprite;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item")
+	UPaperSprite* PlacementSprite;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 	UTexture2D* InventoryIcon;

@@ -193,6 +193,8 @@ void AEnemy::OnHit(AActor* SelfActor, AActor* OtherActor, FVector NormalImpulse,
 		// Check if the OtherActor is a Character
 		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(OtherActor))
 		{
+			if (!Character->bIsInvincible)
+				Character->LaunchCharacter(FVector(-500 * Hit.Normal.X, 0, 0), false, false);
 			Character->TakeDamage(1);
 		}
 	}

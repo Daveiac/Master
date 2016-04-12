@@ -20,6 +20,8 @@ float SpringDelay;
 UPROPERTY(EditAnywhere, Category = "SpringBoard")
 float SpringFactor;
 
+UPROPERTY(EditAnywhere, Category = "Sound")
+UAudioComponent *SpringSound;
 
 public:	
 	// Sets default values for this actor's properties

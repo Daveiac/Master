@@ -17,6 +17,8 @@ UPROPERTY(EditAnywhere, Category = "Sprite")
 class UPaperSpriteComponent *SpriteComponent;
 class UPaperSprite *Sprite;
 
+UPROPERTY(EditAnywhere, Category = "Sound")
+UAudioComponent *PickupSound;
 public:	
 	// Sets default values for this actor's properties
 	APickupItem();

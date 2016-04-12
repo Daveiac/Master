@@ -14,8 +14,10 @@ ASpikes::ASpikes()
 	struct FConstructorStatics
 	{
 		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> Sprite;
+		ConstructorHelpers::FObjectFinderOptional<USoundWave> SpikeHitSound;
 		FConstructorStatics()
 			: Sprite(TEXT("/Game/2DSideScroller/Sprites/Items/spikes_Sprite.spikes_Sprite"))
+			, SpikeHitSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/hit_spike.hit_spike'"))
 		{
 		}
 	};
@@ -25,6 +27,10 @@ ASpikes::ASpikes()
 	SpriteComponent->SetSprite(Sprite);
 	SpriteComponent->CanCharacterStepUpOn = ECanBeCharacterBase::ECB_No;
 	RootComponent = SpriteComponent;
+
+	SpikeHitSound = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("SpikeHitSound"));
+	SpikeHitSound->SetSound(ConstructorStatics.SpikeHitSound.Get());
+	SpikeHitSound->bAutoActivate = false;
 }
 
 void ASpikes::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrimitiveComponent * OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult & Hit)
@@ -36,8 +42,9 @@ void ASpikes::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrimitive
 		{
 			if (HitNormal.Z < -0.1)
 			{
+				SpikeHitSound->Play();
 				Character->TakeDamage(3);
-				Character->LaunchCharacter(FVector(0, 0, Character->GetCharacterMovement()->JumpZVelocity / 2.0f), false, false);
+				Character->LaunchCharacter(FVector(0, 0, Character->GetCharacterMovement()->JumpZVelocity * 0.7f), false, false);
 			}
 		}
 	}

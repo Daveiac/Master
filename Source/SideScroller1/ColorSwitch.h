@@ -17,4 +17,5 @@ public:
 	int32 Channel;
 	virtual void Activate() override;
 	virtual void Deactivate() override;
+	void Toggle();
 };

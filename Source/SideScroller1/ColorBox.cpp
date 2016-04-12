@@ -27,6 +27,7 @@ AColorBox::AColorBox()
 	SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 	Channel = 0;
 	FadeState = Normal;
+	bIsActive = true;
 }
 
 void AColorBox::Tick(float DeltaSeconds)
@@ -40,6 +41,7 @@ void AColorBox::Tick(float DeltaSeconds)
 		{
 			SpriteColor.A = 1.0f;
 			FadeState = Normal;
+			SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 		}
 		else if (SpriteColor.A < 0)
 		{
@@ -53,11 +55,12 @@ void AColorBox::Tick(float DeltaSeconds)
 
 void AColorBox::Activate()
 {
-	SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 	FadeState = FadeIn;
+	bIsActive = true;
 }
 
 void AColorBox::Deactivate()
 {
 	FadeState = FadeOut;
+	bIsActive = false;
 }

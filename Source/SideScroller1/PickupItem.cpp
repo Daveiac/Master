@@ -18,8 +18,10 @@ APickupItem::APickupItem()
 	struct FConstructorStatics
 	{
 		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> Sprite;
+		ConstructorHelpers::FObjectFinderOptional<USoundWave> PickupSound;
 		FConstructorStatics()
 			: Sprite(TEXT("PaperSprite'/Game/2DSideScroller/Sprites/Items/coinGold_Sprite.coinGold_Sprite'"))
+			, PickupSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/coin.coin'"))
 		{
 		}
 	};
@@ -31,6 +33,10 @@ APickupItem::APickupItem()
 	RootComponent = SpriteComponent;
 
 	ScoreValue = 50;
+	PickupSound = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("PickupSound"));
+	PickupSound->SetSound(ConstructorStatics.PickupSound.Get());
+	PickupSound->bAutoActivate = false;
+	PickupSound->bStopWhenOwnerDestroyed = false;
 }
 
 // Called every frame
@@ -47,6 +53,7 @@ void APickupItem::NotifyActorBeginOverlap(AActor * OtherActor)
 		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(OtherActor))
 		{
 			GameMode->AddToScore(ScoreValue);
+			PickupSound->Play();
 			Destroy();
 		}
 	}

@@ -15,9 +15,11 @@ ASpringBoard::ASpringBoard()
 	{
 		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> UpSprite;
 		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> DownSprite;
+		ConstructorHelpers::FObjectFinderOptional<USoundWave> SpringSound;
 		FConstructorStatics()
 			: UpSprite(TEXT("/Game/2DSideScroller/Sprites/Items/springboardUp_Sprite.springboardUp_Sprite"))
 			, DownSprite(TEXT("/Game/2DSideScroller/Sprites/Items/springboardDown_Sprite.springboardDown_Sprite"))
+			, SpringSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/Spring.Spring'"))
 		{
 		}
 	};
@@ -32,6 +34,11 @@ ASpringBoard::ASpringBoard()
 
 	SpringDelay = 0.2f;
 	SpringFactor = 1.5f;
+
+	SpringSound = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("SpringSound"));
+	SpringSound->SetSound(ConstructorStatics.SpringSound.Get());
+	SpringSound->bAutoActivate = false;
+	SpringSound->AttachTo(RootComponent);
 }
 
 void ASpringBoard::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrimitiveComponent * OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult & Hit)
@@ -63,4 +70,5 @@ void ASpringBoard::Spring()
 	bIsReady = true;
 	ACharacter *Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 	Character->LaunchCharacter(FVector(0, 0, Character->GetCharacterMovement()->JumpZVelocity * SpringFactor), false, false);
+	SpringSound->Play();
 }

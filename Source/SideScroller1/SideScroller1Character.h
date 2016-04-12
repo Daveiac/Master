@@ -59,11 +59,17 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Health")
-	bool bIsInvincible;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
+	UAudioComponent *SoundDamageTaken;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
+	UAudioComponent *SoundFootsteps;
 
 
 public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Health")
+	bool bIsInvincible;
+
 	ASideScroller1Character();
 
 	/** Returns SideViewCameraComponent subobject **/

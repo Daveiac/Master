@@ -24,7 +24,30 @@ stiger
 lodd med kjetting // vanskeliger enn antatt
 nøkler?
 
+SOUND:
+enemy:
+	idle
+	atk
+	eat
+	walk
+player
+	jump
+	hit ground/walls/ceiling
+item:
+	idle
+	pick up
+	release
+	can't place
+	hit ground
+	switches & blocks
+	Moving platform
+	
+	
+	
+	
+
 Bugs:
 begrens hvor ting kan settes ut
 Organisere koden + mappestruktur bedre
 fikse fargebokser med enums og shit.
+flere dyr spiser mat samtidig
