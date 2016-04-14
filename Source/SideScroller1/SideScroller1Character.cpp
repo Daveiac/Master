@@ -21,11 +21,13 @@ ASideScroller1Character::ASideScroller1Character()
 		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> IdleAnimationAsset;
 		ConstructorHelpers::FObjectFinderOptional<USoundWave> TakeDamageSound;
 		ConstructorHelpers::FObjectFinderOptional<USoundCue> FootstepsSound;
+		ConstructorHelpers::FObjectFinderOptional<USoundWave> DeathSound;
 		FConstructorStatics()
 			: RunningAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/RunningAnimation.RunningAnimation"))
 			, IdleAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/IdleAnimation.IdleAnimation"))
 			, TakeDamageSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/TakeDamage.TakeDamage'"))
 			, FootstepsSound(TEXT("SoundCue'/Game/2DSideScroller/Sound/SFX/Footstep_Cue.Footstep_Cue'"))
+			, DeathSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/death.death'"))
 		{
 		}
 	};
@@ -106,6 +108,11 @@ ASideScroller1Character::ASideScroller1Character()
 	SoundFootsteps->SetSound(ConstructorStatics.FootstepsSound.Get());
 	SoundFootsteps->bAutoActivate = false;
 	SoundFootsteps->AttachTo(RootComponent);
+
+	SoundDeath = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("Death"));
+	SoundDeath->SetSound(ConstructorStatics.DeathSound.Get());
+	SoundDeath->bAutoActivate = false;
+	SoundDeath->bStopWhenOwnerDestroyed = false;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -218,6 +225,13 @@ void ASideScroller1Character::SetNotInvincible()
 
 void ASideScroller1Character::Kill()
 {
-	Destroy();
-	//UGameplayStatics::OpenLevel(GetWorld(), FName(*UGameplayStatics::GetCurrentLevelName(GetWorld())));
+	SoundDeath->Play();
+	DisableInput(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+	FTimerHandle DeathTimer;
+	GetWorldTimerManager().SetTimer(DeathTimer, this, &ASideScroller1Character::RestartLevel, 0.45);
+}
+
+void ASideScroller1Character::RestartLevel()
+{
+	UGameplayStatics::OpenLevel(GetWorld(), FName(*UGameplayStatics::GetCurrentLevelName(GetWorld())));
 }

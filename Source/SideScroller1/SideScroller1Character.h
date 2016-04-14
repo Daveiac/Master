@@ -65,6 +65,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
 	UAudioComponent *SoundFootsteps;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
+	UAudioComponent *SoundDeath;
+
 
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Health")
@@ -92,4 +95,6 @@ public:
 	// Kills the Character
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	void Kill();
+
+	void RestartLevel();
 };
