@@ -3,20 +3,25 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "Item.h"
 #include "Bait.generated.h"
 
 UCLASS()
-class SIDESCROLLER1_API ABait : public AActor
+class SIDESCROLLER1_API ABait : public AItem
 {
 	GENERATED_BODY()
 
-class UPaperSpriteComponent *SpriteComponent;
 class UPaperFlipbook *BaitFB;
 int32 CurrentFrame;
+
+protected:
+
+	virtual void LoadAsstets();
 
 public:	
 	bool bIsEdible;
 	// Sets default values for this actor's properties
 	ABait();
 	void BeEaten(int32 frameskip);
+	virtual bool Release();
 };

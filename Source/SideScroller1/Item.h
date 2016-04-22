@@ -12,12 +12,30 @@ class SIDESCROLLER1_API AItem : public AActor
 {
 	GENERATED_BODY()
 
-float Counter;
 protected:
-	// True when the item can be used, false when it is not
+	float Counter;
+
+	// Paper sprite to represent the visual item
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
+	UPaperSpriteComponent* PaperSpriteComponent;
+	// The sprite that is shown before the item is picked up
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item")
+	UPaperSprite* PickupSprite;
+	// The sprite that is shown while grabing and after placement
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item")
+	UPaperSprite* PlacementSprite;
+	// The inventory icon of this item
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	UTexture2D* InventoryIcon;
+	// True when the item can be picked up, false when it can not TODO: Change name
 	bool bIsActive;
 
+	virtual void LoadAsstets();
+
 public:
+	UPROPERTY(VisibleAnywhere, Category = "Item")
+	bool bIsGrabbed;
+
 	// Sets default values for this actor's properties
 	AItem();
 
@@ -26,19 +44,6 @@ public:
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
-
-	// Paper sprite to represent the visual item
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
-	UPaperSpriteComponent* PaperSpriteComponent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item")
-	UPaperSprite* PickupSprite;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item")
-	UPaperSprite* PlacementSprite;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-	UTexture2D* InventoryIcon;
 
 	// Return whether the item is active or not
 	UFUNCTION(BlueprintPure, Category = "Item")
@@ -54,7 +59,12 @@ public:
 	UFUNCTION()
 	void DoOnClicked();
 
-	UPROPERTY(VisibleAnywhere, Category = "Item")
-	bool bIsGrabbed;
-
+	// Pick up the item and add it to the inventory
+	virtual void PickUp();
+	// Grab the item 
+	virtual void Grab();
+	// Release the item
+	virtual bool Release();
+	// Get the position of the mouse
+	FVector GetMouseWorldPos();
 };

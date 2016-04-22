@@ -88,7 +88,6 @@ void AEnemy::UpdateAnimation()
 void AEnemy::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 	if (bIsBaitable)
 	{	// Move towards closest bait
 		if (!CurrentBait)
@@ -108,6 +107,7 @@ void AEnemy::Tick(float DeltaSeconds)
 			}
 		}
 	}
+	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 	if (!CurrentBait && DetectionSphere->IsOverlappingActor(Character))
 	{	// Move towards the player
 		float CharX = Character->GetActorLocation().X;
@@ -119,7 +119,6 @@ void AEnemy::Tick(float DeltaSeconds)
 
 ABait* AEnemy::GetClosestBait()
 {
-	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 	TArray<AActor*> AllBait;
 	ABait *Bait = nullptr;
 	DetectionSphere->GetOverlappingActors(AllBait, ABait::StaticClass());
@@ -128,7 +127,7 @@ ABait* AEnemy::GetClosestBait()
 		float XDistance = DetectionSphere->GetScaledSphereRadius();
 		for (int i = 0; i < AllBait.Num(); i++)
 		{  // TODO: Fix casting
-			float Diff = FMath::Abs((AllBait[i]->GetActorLocation().X - Character->GetActorLocation().X));
+			float Diff = FMath::Abs((AllBait[i]->GetActorLocation().X - GetActorLocation().X));
 			if (Diff < XDistance && (((ABait*)AllBait[i])->bIsEdible))
 			{
 				Bait = (ABait*)AllBait[i];

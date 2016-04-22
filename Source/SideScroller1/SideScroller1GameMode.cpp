@@ -43,11 +43,7 @@ void ASideScroller1GameMode::BeginPlay()
 
 void ASideScroller1GameMode::Tick(float DeltaSeconds)
 {
-	if (GrabbedItem)
-	{
-		FVector WorldPos = GetMouseWorldPos();
-		GrabbedItem->PaperSpriteComponent->SetWorldLocation(WorldPos);
-	}
+	
 }
 
 TArray<AItem*> ASideScroller1GameMode::GetInventory()
@@ -63,37 +59,18 @@ void ASideScroller1GameMode::AddToInventory(AItem *AnItem)
 
 void ASideScroller1GameMode::OnInventorySlotPressed(int32 Slot)
 {
-	FVector WorldPos = GetMouseWorldPos();
-	FRotator WorldRot(0.0f, 0.0f, 0.0f);
-	GrabbedItem = Inventory[Slot];
-	GrabbedItem->bIsGrabbed = true;
-	UPaperSpriteComponent *Sprite = GrabbedItem->PaperSpriteComponent;
-	Sprite->SetWorldLocation(WorldPos);
-	Sprite->SetVisibility(true);
-	Sprite->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	if (!GrabbedItem)
+	{
+		GrabbedItem = Inventory[Slot];
+		GrabbedItem->Grab();
+	}
 }
 
 void ASideScroller1GameMode::OnInventorySlotReleased(AItem *Item)
 {
-	GrabbedItem->bIsGrabbed = false;
-	UPaperSpriteComponent *Sprite = GrabbedItem->PaperSpriteComponent;
-	Sprite->SetSimulatePhysics(true);
-	Sprite->SetConstraintMode(EDOFMode::XZPlane);
-	Sprite->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 	GrabbedItem = nullptr;
 	Inventory.Remove(Item);
 	RefreshInventory();
-}
-
-FVector ASideScroller1GameMode::GetMouseWorldPos()
-{
-	FVector WorldPos(0, 0, 0);
-	FVector Direction(0, 0, 0);
-	APlayerController *PlayerController = GetWorld()->GetFirstPlayerController();
-	PlayerController->GetMousePosition(WorldPos.X, WorldPos.Y);
-	PlayerController->DeprojectMousePositionToWorld(WorldPos, Direction);
-	WorldPos.Y = 0;
-	return WorldPos;
 }
 
 void ASideScroller1GameMode::AddToScore(int32 Score)

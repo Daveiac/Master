@@ -46,8 +46,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	void OnInventorySlotReleased(AItem *Item);
 
-	FVector GetMouseWorldPos();
-
 	void AddToScore(int32 Score);
 
 protected:

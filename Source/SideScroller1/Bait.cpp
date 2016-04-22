@@ -6,27 +6,34 @@
 #include "PaperFlipbook.h"
 
 
-// Sets default values
-ABait::ABait()
+void ABait::LoadAsstets()
 {
-	// Setup the assets
 	struct FConstructorStatics
 	{
 		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> BaitFB;
+		ConstructorHelpers::FObjectFinderOptional<UTexture2D> InventoryIcon;
 		FConstructorStatics()
 			: BaitFB(TEXT("PaperFlipbook'/Game/2DSideScroller/Sprites/Items/cherry_Flipbook.cherry_Flipbook'"))
+			, InventoryIcon(TEXT("Texture2D'/Game/2DSideScroller/Sprites/Items/cherry.cherry'"))
 		{
 		}
 	};
 	static FConstructorStatics ConstructorStatics;
 
 	BaitFB = ConstructorStatics.BaitFB.Get();
-	SpriteComponent = CreateAbstractDefaultSubobject<UPaperSpriteComponent>(TEXT("SpriteComponent"));
-	SpriteComponent->SetSprite(BaitFB->GetSpriteAtFrame(0));
-	SpriteComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
-	RootComponent = SpriteComponent;
+	InventoryIcon = ConstructorStatics.InventoryIcon.Get();
+	PickupSprite = BaitFB->GetSpriteAtFrame(0);
+	PlacementSprite = BaitFB->GetSpriteAtFrame(0);
+	PaperSpriteComponent->SetSprite(PickupSprite);
+}
+
+// Sets default values
+ABait::ABait()
+	: AItem()
+{
+	LoadAsstets();
 	CurrentFrame = 0;
-	bIsEdible = true;
+	bIsEdible = false;
 }
 
 void ABait::BeEaten(int32 FrameSkip = 1)
@@ -38,7 +45,18 @@ void ABait::BeEaten(int32 FrameSkip = 1)
 		CurrentFrame = NextFrame;
 		if (NextFrame == LastFrame)
 			bIsEdible = false;
-		SpriteComponent->SetSprite(BaitFB->GetSpriteAtFrame(CurrentFrame));
+		PaperSpriteComponent->SetSprite(BaitFB->GetSpriteAtFrame(CurrentFrame));
 	}
+}
+
+bool ABait::Release()
+{
+	bool RetVal = AItem::Release();
+	if (RetVal)
+	{
+		PaperSpriteComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
+		bIsEdible = true;
+	}
+	return RetVal;
 }
 
