@@ -13,7 +13,6 @@ lyd
 flyvende enemy
 flere character animations: jumping, getting hurt.
 attack animation på enemies
-enemy knockback?
 variabel inventory
 Timer på level?
 
@@ -21,7 +20,7 @@ Nye items/ interactions:
 Bedre items/ byggeklosser
 teleportere
 stiger
-lodd med kjetting // vanskeliger enn antatt
+lodd med kjetting // vanskeligere enn antatt
 nøkler?
 
 SOUND:
