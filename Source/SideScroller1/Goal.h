@@ -18,10 +18,20 @@ UAudioComponent *LevelCompletedSound;
 UPROPERTY(EditAnywhere, Category = "Level")
 TAssetPtr<UWorld> NextLevel;
 
+UPROPERTY(EditAnywhere, Category = "Level")
+bool bIsActive;
+
 public:
-	bool bIsActive;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
+	int32 MaxScore;
 	// Sets default values for this actor's properties
 	AGoal();
+	virtual void Tick(float DeltaSeconds) override;
 	virtual void NotifyActorBeginOverlap(AActor *OtherActor) override;
 	void LoadNextLevel();
+	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintPure, Category = "Level")
+	bool GetIsActive();
+	UFUNCTION(BlueprintCallable, Category = "Level")
+	void SetIsActive(bool bSetActive);
 };

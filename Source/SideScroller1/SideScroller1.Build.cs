@@ -6,8 +6,8 @@ public class SideScroller1 : ModuleRules
 {
 	public SideScroller1(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "UMG" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "UMG"});
 
-        PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
-	}
+        PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "HeadMountedDisplay", "PSMove" });
+    }
 }
