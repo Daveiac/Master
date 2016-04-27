@@ -7,7 +7,6 @@ p2 bruker items, brytere, lokkemat etc.
 p2 kan endre på kamera og gravitasjon
 
 Features:
-Items som plukkes opp er anderledes fra items som slippes ut.
 få med move
 lyd
 flyvende enemy

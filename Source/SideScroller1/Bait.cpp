@@ -49,13 +49,18 @@ void ABait::BeEaten(int32 FrameSkip = 1)
 	}
 }
 
+void ABait::Grab()
+{
+	AItem::Grab();
+	bIsEdible = true;
+}
+
 bool ABait::Release()
 {
 	bool RetVal = AItem::Release();
 	if (RetVal)
 	{
 		PaperSpriteComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
-		bIsEdible = true;
 	}
 	return RetVal;
 }

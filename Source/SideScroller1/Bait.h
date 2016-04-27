@@ -23,5 +23,6 @@ public:
 	// Sets default values for this actor's properties
 	ABait();
 	void BeEaten(int32 frameskip);
+	virtual void Grab();
 	virtual bool Release();
 };
