@@ -97,14 +97,24 @@ void AEnemy::Tick(float DeltaSeconds)
 			if (GetCapsuleComponent()->IsOverlappingActor(CurrentBait))
 			{
 				if (!GetWorldTimerManager().IsTimerActive(EatingTimer))
-					GetWorldTimerManager().SetTimer(EatingTimer, this, &AEnemy::EatBait, 1.0f, true, 0);  // TODO: Eating rate
+					if (GetWorldTimerManager().IsTimerPaused(EatingTimer))
+						GetWorldTimerManager().UnPauseTimer(EatingTimer);
+					else
+						GetWorldTimerManager().SetTimer(EatingTimer, this, &AEnemy::EatBait, 1.0f, true, 0);  // TODO: Eating rate
 			}
 			else
 			{
 				float BaitX = CurrentBait->GetActorLocation().X;
 				float ThisX = GetActorLocation().X;
 				MoveRight((ThisX < BaitX) - (BaitX < ThisX));
+				if (GetWorldTimerManager().IsTimerActive(EatingTimer))
+					GetWorldTimerManager().PauseTimer(EatingTimer);
 			}
+		}
+		else
+		{
+			if (GetWorldTimerManager().IsTimerActive(EatingTimer))
+				GetWorldTimerManager().PauseTimer(EatingTimer);
 		}
 	}
 	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);

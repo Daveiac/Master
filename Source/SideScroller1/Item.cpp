@@ -22,8 +22,6 @@ void AItem::PickUp()
 void AItem::Grab()
 {
 	bIsGrabbed = true;
-	FVector WorldPos = GetMouseWorldPos();
-	PaperSpriteComponent->SetWorldLocation(WorldPos);
 	PaperSpriteComponent->SetVisibility(true);
 	PaperSpriteComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 }
@@ -88,6 +86,11 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 	PaperSpriteComponent->SetSprite(PickupSprite);
+	if (!bIsActive)
+	{
+		Grab();
+		Release();
+	}
 }
 
 // Called every frame

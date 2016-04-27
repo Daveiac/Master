@@ -3,6 +3,7 @@
 #include "SideScroller1.h"
 #include "Bait.h"
 #include "PaperSpriteComponent.h"
+#include "SideScroller1GameMode.h"
 #include "PaperFlipbook.h"
 
 
@@ -44,8 +45,15 @@ void ABait::BeEaten(int32 FrameSkip = 1)
 		int32 NextFrame = FMath::Min(CurrentFrame + FrameSkip, LastFrame);
 		CurrentFrame = NextFrame;
 		if (NextFrame == LastFrame)
+		{
 			bIsEdible = false;
-		PaperSpriteComponent->SetSprite(BaitFB->GetSpriteAtFrame(CurrentFrame));
+			DoOnClicked();
+		}
+		UPaperSprite *Sprite = BaitFB->GetSpriteAtFrame(CurrentFrame);
+		PaperSpriteComponent->SetSprite(Sprite);
+		InventoryIcon = Sprite->GetBakedTexture();
+		if (ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this)))
+			GameMode->RefreshInventory();
 	}
 }
 

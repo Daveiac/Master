@@ -27,12 +27,14 @@ protected:
 	// The inventory icon of this item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 	UTexture2D* InventoryIcon;
-	// True when the item can be picked up, false when it can not TODO: Change name
-	bool bIsActive;
 
 	virtual void LoadAsstets();
 
 public:
+	// True when the item can be picked up, false when it can not TODO: Change name
+	UPROPERTY(EditAnywhere, Category = "Item")
+	bool bIsActive;
+
 	UPROPERTY(VisibleAnywhere, Category = "Item")
 	bool bIsGrabbed;
 
