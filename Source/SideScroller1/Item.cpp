@@ -12,18 +12,21 @@ void AItem::PickUp()
 	// Remove the Item from the world and add it to the inventory
 	bIsActive = false;
 	PaperSpriteComponent->SetVisibility(false);
-	PaperSpriteComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//PaperSpriteComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	PaperSpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
+	PaperSpriteComponent->SetSimulatePhysics(false);
 	if (PlacementSprite)
 		PaperSpriteComponent->SetSprite(PlacementSprite);
-	ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this));
-	GameMode->AddToInventory(this);
+	Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this))->AddToInventory(this);
 }
 
 void AItem::Grab()
 {
 	bIsGrabbed = true;
 	PaperSpriteComponent->SetVisibility(true);
-	PaperSpriteComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	PaperSpriteComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	PaperSpriteComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
+	SetOpacity(0.75f);
 }
 
 bool AItem::Release()
@@ -33,6 +36,7 @@ bool AItem::Release()
 	PaperSpriteComponent->SetConstraintMode(EDOFMode::XZPlane);
 	PaperSpriteComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	PaperSpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+	SetOpacity(1.0f);
 	return true; // TODO: Check for valid placement
 }
 
@@ -57,6 +61,13 @@ void AItem::LoadAsstets()
 	PaperSpriteComponent->SetSprite(PickupSprite);
 }
 
+void AItem::SetOpacity(float Opacity)
+{
+	FLinearColor SpriteColor = PaperSpriteComponent->GetSpriteColor();
+	SpriteColor.A = Opacity;
+	PaperSpriteComponent->SetSpriteColor(SpriteColor);
+}
+
 // Sets default values
 AItem::AItem()
 {
@@ -66,6 +77,7 @@ AItem::AItem()
 	// Creat PaperSprite component
 	PaperSpriteComponent = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSprite"));
 	RootComponent = PaperSpriteComponent;
+	PaperSpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	PaperSpriteComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
 	PaperSpriteComponent->SetConstraintMode(EDOFMode::XZPlane);
 	
@@ -74,6 +86,7 @@ AItem::AItem()
 	// Items start as active and not grabbed
 	bIsActive = true;
 	bIsGrabbed = false;
+	bIsClickable = false;
 	// initialize counter
 	Counter = 0.0f;
 
@@ -128,7 +141,7 @@ void AItem::OnOverlapBegin(AActor *OtherActor)
 	if (bIsActive && OtherActor != nullptr && OtherActor != this)
 	{
 		// Check if the OtherActor is a Character
-		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(OtherActor))
+		if (Cast<ASideScroller1Character>(OtherActor))
 		{
 			PickUp();
 		}
@@ -137,13 +150,17 @@ void AItem::OnOverlapBegin(AActor *OtherActor)
 
 void AItem::DoOnClicked()
 {
+	ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this));
 	if (bIsGrabbed)
 	{
 		if (Release())
 		{
-			Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(GetWorld()))->
-				OnInventorySlotReleased(this);
+			GameMode->OnInventorySlotReleased(this);
 		}
+	}
+	else if (bIsClickable && !GameMode->HasGrabbedItem()) {
+		PickUp();
+		Grab();
 	}
 }
 

@@ -73,6 +73,11 @@ void ASideScroller1GameMode::OnInventorySlotReleased(AItem *Item)
 	RefreshInventory();
 }
 
+bool ASideScroller1GameMode::HasGrabbedItem()
+{
+	return (GrabbedItem)? true: false;
+}
+
 void ASideScroller1GameMode::AddToScore(int32 Score)
 {
 	this->Score += Score;

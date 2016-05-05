@@ -16,6 +16,8 @@ UPROPERTY(EditAnywhere, Category = "MotionController")
 class UMotionControllerComponent *MotionController;
 
 public:	
+	UPROPERTY(VisibleAnywhere, Category = "PSMove")
+	FVector Position;
 	// Sets default values for this actor's properties
 	AMoveActor();
 

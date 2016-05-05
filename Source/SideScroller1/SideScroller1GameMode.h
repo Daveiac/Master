@@ -46,6 +46,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	void OnInventorySlotReleased(AItem *Item);
 
+	UFUNCTION(BlueprintCallable, Category = "Item")
+	bool HasGrabbedItem();
+
 	void AddToScore(int32 Score);
 
 protected:

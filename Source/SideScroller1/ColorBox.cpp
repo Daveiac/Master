@@ -43,9 +43,9 @@ void AColorBox::Tick(float DeltaSeconds)
 			FadeState = Normal;
 			SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 		}
-		else if (SpriteColor.A < 0)
+		else if (SpriteColor.A < 0.2)
 		{
-			SpriteColor.A = 0.0f;
+			SpriteColor.A = 0.2f;
 			FadeState = Normal;
 			SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 		}

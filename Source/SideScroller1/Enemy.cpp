@@ -38,7 +38,7 @@ AEnemy::AEnemy()
 	// Set the detection sphere
 	DetectionSphere = CreateDefaultSubobject<USphereComponent>(TEXT("DetectionSphere"));
 	DetectionSphere->AttachTo(GetCapsuleComponent());
-	DetectionSphere->SetSphereRadius(250.0f);
+	DetectionSphere->SetSphereRadius(350.0f);
 	DetectionSphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	DetectionSphere->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 
@@ -90,8 +90,7 @@ void AEnemy::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	if (bIsBaitable)
 	{	// Move towards closest bait
-		if (!CurrentBait)
-			CurrentBait = GetClosestBait();
+		CurrentBait = GetClosestBait();
 		if (CurrentBait)
 		{
 			if (GetCapsuleComponent()->IsOverlappingActor(CurrentBait))

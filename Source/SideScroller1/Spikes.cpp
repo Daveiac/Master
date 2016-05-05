@@ -43,7 +43,7 @@ void ASpikes::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrimitive
 			if (HitNormal.Z < -0.1)
 			{
 				SpikeHitSound->Play();
-				Character->TakeDamage(3);
+				Character->TakeDamage(4);
 				Character->LaunchCharacter(FVector(0, 0, Character->GetCharacterMovement()->JumpZVelocity * 0.7f), false, false);
 			}
 		}

@@ -29,14 +29,18 @@ protected:
 	UTexture2D* InventoryIcon;
 
 	virtual void LoadAsstets();
+	virtual void SetOpacity(float Opacity);
 
 public:
 	// True when the item can be picked up, false when it can not TODO: Change name
 	UPROPERTY(EditAnywhere, Category = "Item")
 	bool bIsActive;
-
+	// True when this item is grabbed by p2
 	UPROPERTY(VisibleAnywhere, Category = "Item")
 	bool bIsGrabbed;
+	// True when p2 can click the item to pick it up.
+	UPROPERTY(EditAnywhere, Category = "Item")
+	bool bIsClickable;
 
 	// Sets default values for this actor's properties
 	AItem();
