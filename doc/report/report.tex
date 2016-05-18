@@ -1,0 +1,65 @@
+\documentclass[a4paper]{book}
+
+% !TeX spellcheck = en_GB
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{cite}
+\usepackage[acronyms]{glossaries}
+\usepackage{emptypage}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{csquotes}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{pdfpages}
+
+
+\makeglossaries
+\include{init/glossaries}
+
+\newcommand{\note}[1]{\textcolor{Red}{\textbf{NOTE: #1}}\\}
+\newcommand{\nb}[1]{\textcolor{Red}{\textit{#1}}}
+
+\newcommand{\hfigure}[3]{
+	\begin{figure}[!ht]
+		\begin{center}
+			\includegraphics[width=#3\textwidth]{images/#1}
+			\caption{#2}
+			\label{fig:#1}
+		\end{center}
+	\end{figure}
+}
+
+\begin{document}
+
+\frontmatter
+\include{init/titlepage}
+
+\cleardoublepage
+
+\include{init/abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\printglossaries
+
+\mainmatter
+\include{introduction/part_intro}
+\include{study/part_study}
+\include{results/part_results}
+\include{experiment/part_experiment}
+\include{conclusion/part_conclusion}
+
+\appendix
+% Add appendices
+
+\backmatter
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,70 @@
+\documentclass[11pt, a4paper]{report} 
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{textcomp,amsmath,longtable}
+\usepackage{latexsym}
+\usepackage[letterpaper, landscape, margin=2cm]{geometry}
+
+\begin{document}
+	\newcounter{qnumber}
+	\setcounter{qnumber}{0}
+	\stepcounter{qnumber}
+
+	\newcommand{\question}[1]{
+		\theqnumber &\textsf{#1} &{\Large $\Box$} & {\Large $\Box$} &{\Large $\Box$} &{\Large $\Box$}\stepcounter{qnumber}\\ \hline
+	}
+
+	\newcommand{\heading}[1]{
+		%\setcounter{qnumber}{0}\theqnumber 
+		&\multicolumn{4}{l}{\bf\textsf{#1} \hfill} 
+		%\stepcounter{qnumber} 
+		&\\ \hline %
+	}
+	\newcommand{\divider}{\hline}
+	
+	\begin{longtable}{|c| p{10cm}|p{1.7cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+		\divider
+			& Alder & \multicolumn{4}{|l|}{\underline{\hspace{0.5cm}} år} \\
+		\divider
+			& Kjønn & gutt {\Large $\Box$} & jente {\Large $\Box$} & \multicolumn{2}{|l|}{} \\
+		\divider
+			& Har du spilt mye spill før? & aldri {\Large $\Box$} & litt {\Large $\Box$} & mye {\Large $\Box$} & \\
+		\divider
+			ID     & Spørsmål & Uenig & Litt enig & Litt enig & Enig\\
+		\divider
+		\heading{Konsentrasjon}
+		\question{Jeg konsentrerer meg når jeg spiller spillet}
+		%\question{Jeg blir ikke distrahert når jeg spiller spillet}
+		\heading{Klare mål}
+		%\question{Jeg forstår hva målet med spillet er}
+		\question{Det var lett å forstå hva jeg skal gjøre i spillet}
+		\heading{Informasjon}
+		\question{Det er lett å vite når jeg gjør noe galt i spillet}
+		\question{Det er lett å vite når jeg gjør noe bra i spillet}
+		\question{Jeg likte hvordan spillet så ut}
+		\question{Jeg likte lydene i spillet}
+		\heading{Utfordring}
+		\question{Jeg kjeder meg når jeg spiller spillet}
+		\question{Spillet var for lett}
+		\question{Spillet var passe vanskelig}
+		\question{Spillet var for vanskelig}
+		\question{Jeg ble bedre i spillet etterhvert som jeg spilte}
+		\heading{Kontroll}
+		%\question{Jeg føler at jeg styrer spillet}
+		\question{Jeg hadde kontroll over spillerens bevegelser}
+		\question{Jeg kunne komme meg videre selv om jeg gjorde noe feil}
+		\heading{Innlevelse}
+		\question{Jeg synes at tiden går fort når jeg spiller spillet}
+		\question{Jeg tenkte ikke på det som var rundt meg når jeg spilte spillet}
+		\heading{Sosial interaksjon}
+		\question{Jeg konkurerte med andre om å komme lengst}
+		\question{Det var viktig å snakke sammen for å klare spillet}
+		\question{Det er viktig å samarbeide for å klare spillet}
+		\question{Jeg samarbeidet godt med den andre spilleren}
+		\question{Den andre spilleren samarbeidet med meg}
+		\heading{Underholdning}
+		\question{Det var gøy å spille}
+		\question{Jeg kunne tenkt meg å spille dette spillet hjemme}
+		
+	\end{longtable}
+\end{document}

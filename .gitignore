@@ -44,6 +44,7 @@ Binaries/*
 
 # Builds
 Build/*
+Releases/*
 
 # Don't ignore icon files in Build
 !Build/**/*.ico
@@ -59,3 +60,42 @@ DerivedDataCache/*
 
 # StarterContent
 StarterContent
+
+
+### LaTeX ###
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc0
+*.nav
+*.nlo
+*.out
+*.pdf
+*.pdfsync
+*.ps
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdy
+*.tdo
