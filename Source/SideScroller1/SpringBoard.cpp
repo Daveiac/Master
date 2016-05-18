@@ -33,7 +33,7 @@ ASpringBoard::ASpringBoard()
 	bIsReady = true;
 
 	SpringDelay = 0.2f;
-	SpringFactor = 1.5f;
+	SpringFactor = 0.5f;
 
 	SpringSound = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("SpringSound"));
 	SpringSound->SetSound(ConstructorStatics.SpringSound.Get());

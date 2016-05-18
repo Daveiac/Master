@@ -32,11 +32,12 @@ APickupItem::APickupItem()
 	SpriteComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 	RootComponent = SpriteComponent;
 
-	ScoreValue = 50;
 	PickupSound = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("PickupSound"));
 	PickupSound->SetSound(ConstructorStatics.PickupSound.Get());
 	PickupSound->bAutoActivate = false;
 	PickupSound->bStopWhenOwnerDestroyed = false;
+
+	ScoreValue = 1;
 }
 
 // Called every frame

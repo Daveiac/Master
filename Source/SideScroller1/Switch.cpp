@@ -57,8 +57,8 @@ void ASwitch::Deactivate()
 
 void ASwitch::NotifyActorOnClicked()
 {
-	(bIsActivated) ? Deactivate() : Activate();
-	
+	if(!bIsImpulseSwitch || !bIsActivated)
+		(bIsActivated) ? Deactivate() : Activate();
 }
 
 void ASwitch::UpdatePlatforms()
