@@ -1,8 +1,11 @@
-\documentclass[a4paper]{book}
+\documentclass[12pt, a4paper]{book}
 
 % !TeX spellcheck = en_GB
+% !TeX program = xelatex
 \usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{titlesec}
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -15,32 +18,29 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{pdfpages}
+\usepackage{booktabs}
 
+\defaultfontfeatures{Ligatures=TeX}
+% Set sans serif font to Arial
+\setsansfont{Arial}
+% Set serifed font to Times New Roman
+\setmainfont{Times New Roman}
+% Set formats for each heading level
+\titleformat*{\section}{\fontsize{16}{18}\bfseries\sffamily}
+\titleformat*{\subsection}{\fontsize{14}{16}\bfseries\sffamily}
+\titleformat*{\subsubsection}{\fontsize{12}{14}\bfseries\sffamily}
 
 \makeglossaries
 \include{init/glossaries}
 
-\newcommand{\note}[1]{\textcolor{Red}{\textbf{NOTE: #1}}\\}
-\newcommand{\nb}[1]{\textcolor{Red}{\textit{#1}}}
-
-\newcommand{\hfigure}[3]{
-	\begin{figure}[!ht]
-		\begin{center}
-			\includegraphics[width=#3\textwidth]{images/#1}
-			\caption{#2}
-			\label{fig:#1}
-		\end{center}
-	\end{figure}
-}
+\include{init/commands}
 
 \begin{document}
 
 \frontmatter
 \include{init/titlepage}
-
-\cleardoublepage
-
 \include{init/abstract}
+\include{init/preface}
 
 \tableofcontents
 \listoffigures

@@ -1,0 +1,11 @@
+should vs must??
+
+Technical requirements:
+The game must support two players
+The two players must have different roles in the game
+The game must support multiple levels
+
+Usability requirements:
+The two players should be equally engaged
+All levels should require both players involvement
+All levels should be possible to complete

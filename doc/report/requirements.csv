@@ -1,0 +1,9 @@
+ID,Description
+,Technical requirements:
+RQ1,The game must support two players
+RQ2,The two players must have different roles in the game
+RQ3,The game must support multiple levels
+,Usability requirements:
+RQ4,The two players should be equally engaged
+RQ5,All levels should require both players involvement
+RQ6,All levels should be possible to complete
