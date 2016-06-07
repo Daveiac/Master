@@ -19,6 +19,18 @@
 \usepackage{multirow}
 \usepackage{pdfpages}
 \usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{epigraph}
+
+\makeatletter
+\titleformat{\part}[display]
+{\Huge\scshape\centering}
+{\MakeUppercase{\partname~\thepart}}
+{20pt}
+{\thispagestyle{epigraph}}
+\setlength\epigraphwidth{0.6\textwidth}
+\renewcommand{\epigraphflush}{center}
+\makeatother
 
 \defaultfontfeatures{Ligatures=TeX}
 % Set sans serif font to Arial

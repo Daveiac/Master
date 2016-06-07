@@ -13,7 +13,8 @@ The original concept of the game was created in the specialization project with 
 The core concept of the game is cooperation; neither of the players should be able to complete a level without the cooperation of the other player. Both players should be equally engaged, but have different roles and tasks during the game. The original concept experienced an evolution throughout the development period, detailed in section \ref{sec:evolution}, and the final concept of the game prototype took shape. 
 
 The game is a puzzle platformer that has different levels where the players have to cooperate to reach the goal. Player one has to reach the goal of each level, but cannot do so because there are obstacles in the way that can only be manipulated by player two. In order to unlock the goal the character needs to collect a certain number of coins on that level. To be able to reach some places, player two needs to place blocks that the character can stand on, creating bridges and towers. There are enemies in the game that will chase the character and hurt them, but the players cannot hurt the enemies. The player controlling the hand can lure enemies away by using bait, allowing the player to access areas guarded by enemies. Player two can also activate switches that can control moving platforms, or make coloured boxes appear and disappear. Figure \ref{fig:level1} shows a part of the first level where the hand must activate coloured switches in order to remove the corresponding coloured boxes that block the players movement.
-\note{Er dette for detaljert til å være concept?}
+
+The game prototype has a total of five levels with varying degrees of difficulty and different puzzles to solve.
 
 \hfigure{level1}{A puzzle with coloured switches that control the existence of corresponding boxes}{1}
 
@@ -21,7 +22,8 @@ The game is a puzzle platformer that has different levels where the players have
 
 
 \section{Requirements}
-Because the game prototype is a creative initiative there were no pre determined requirements. The requirements presented here are meant to make sure that the prototype adheres to the core concepts of the game and allows for interesting gameplay and cooperation between players. Table \ref{tab:requirements} contains a list of the requirements for the game prototype. \note{Lista med requirements er ikke ferdig, bare lurer på om det ser greit ut. Er det sånn at jeg burde lage use cases/user stories/scenarios til requirementsa osv.?}
+Because the game prototype is a creative initiative there were no pre determined requirements. The requirements presented here are meant to make sure that the prototype adheres to the core concepts of the game and allows for interesting gameplay and cooperation between players. Table \ref{tab:requirements} contains a list of the requirements for the game prototype. 
+%TODO: litt mer høynivå requirements. audio, animation, controls, puzzle elements
 
 
 
@@ -45,15 +47,60 @@ Because the game prototype is a creative initiative there were no pre determined
 
 \section{Gameplay Elements}
 \subsection{Character}
+
+\hfigure{character}{The visual representation of the character}{0.1}
+
+The character is represented by an alien avatar, illustrated in Figure \ref{fig:character}, which can move around and interact with the game world. It is controlled by player one, and its only controls are left-right movement and jumping. The character may not harm enemies, nor interact with elements that can manipulate the world, like switches or bait. The primary objective of the character is to collect coins and reach the exit of the level while dodging enemies, pitfalls, and spikes to stay healthy. When the character loses all of its health, the character dies and the level is restarted.
+
 \subsection{Hand}
-\subsection{Game World}
+
+\hfigure{hand}{The visual representation of the hand}{0.1}
+
+Shown in Figure \ref{fig:hand} is the hand, which is a powerful entity that can manipulate the game world. The hand can move up, down, left, and right, and is not affected by gravity or obstacles in the game world like walls and enemies. By using switches and items, the hand can manipulate the game world in order to provide a safe passage for the character.
+
 \subsection{Springboard}
+
+\hfigure{springboard}{The springboard is ready to launch the player.}{0.1}
+
+The springboard is pictured in Figure \ref{fig:springboard} and will launch the character high up in the air whenever it jumps on the springboard. This can be used to reach places that is otherwise to high for the player to reach. The spring board will only launch players and not enemies or items.
+
 \subsection{Enemies}
+
+\hfigure{enemies}{The snail(left) and the spider(right) will chase the character.}{0.3}
+
+There are two different enemies in the game: the spider and the snail, both pictured in Figure \ref{fig:enemies}. The snail and the spider will both chase the character when it gets close to them, but the spider has a higher movement speed than the snail. If the enemies reach the character they will damage the character and cause it to be knocked back. The enemies cannot be killed by the character or hand directly, but they can be lured off a cliff. The spiders can be lured away by the hand by using bait, or lured off a cliff by making it follow the player off.
+
 \subsection{Spikes}
+
+\hfigure{spikes}{Spikes are harmful for the character to jump on}{0.1}
+
+Spikes can be seen in Figure \ref{fig:spikes} and is harmful for the character. When the character hits the spikes from above, it will take damage and be knocked up in the air.
+
 \subsection{Items}
+
+\hfigure{item}{A grass building block item}{0.1}
+
+Items are building blocks that can be picked up by the character and then placed in the world by the hand. Figure \ref{fig:item} shows a building block item. The items are found throughout a level and it must first be picked up by the character before the hand can place it in the world. When an item is picked up, it goes into an inventory, displayed in the top right of the screen, which the hand can then click on to grab the item to be placed. The character can not stand on the items unless they have been placed by the hand, and the hand may not pick up the item. This is done do create a dependency between the character and the hand. After the item has been placed it can be grabbed again by the hand in order to reduce the penalty for erroneous placement. Multiple items can be used together in order to create a bridge or a tower for the character to reach otherwise unreachable places.
+
 \subsection{Bait}
+
+\hfigure{bait}{Bait can be used to lure spiders}{0.1}
+
+The bait, pictured in Figure \ref{fig:bait}, is used for luring spiders away from the character in order for the character to reach an area guarded by a spider. Bait works like items where the character picks the bait up from the world, the bait gets added to the inventory, and the hand can then place the bait out in the world. When a spider gets close to a bait, it will run to the bait and start eating it, ignoring the player. The bait can be placed in the world by the hand to immobilize the spider for a short period, or the bait can be held by the hand to make the spider chase the hand instead of the player.
+
 \subsection{Moving Platforms}
+
+\hfigure{platform}{A moving platform with the switch attached}{0.3}
+
+Moving platforms, shown in Figure \ref{fig:platform}, are platforms that can be set in motion or stopped by a switch. The character can stand on the platform and move along with it, but only the hand can start and stop the movement of the platform. The switch to turn the platform on or off can either be attached to the platform itself, or it could be stationary, attached to the floor or a wall.
+
 \subsection{Coloured Blocks}
 
+\hfigure{colour_block}{A basic opaque colour block}{0.1}
 
+ Coloured blocks work similar to the moving platforms in that they are also controlled by switches. A basic colour block is shown in Figure \ref{fig:colour_block}, and a level with multiple colour blocks can be seen in Figure \ref{fig:level1}. The colour blocks can be activated and deactivated using a switch, which makes them appear or disappear in the game world. When a colour block is deactivated it becomes transparent and does not block the movement of the character. However, when the colour block is activated, it becomes opaque and blocks the character movement. Activating and deactivating the coloured blocks can create bridges, open doors, and trap enemies, but it can also make the player fall or even trap the player by blocking its movement.
 
+\section{Summary}
+The game prototype contains different gameplay elements that are meant to encourage cooperation between the players. In order to complete the levels, the players need to work together to solve the puzzles involved. The main objective of the character is to run and jump around while collecting coins, picking up items for the hand, and avoiding enemies in order to reach the goal. The character can not reach the goal though without the hand placing items, activating moving platforms and colour boxes, and luring enemies away with bait. Figure \ref{fig:level4} shows the character using items placed by the hand in order to reach a ledge and avoid an enemy.
+
+\hfigure{level4}{The character and hand must work together to reach the ledge}{1}

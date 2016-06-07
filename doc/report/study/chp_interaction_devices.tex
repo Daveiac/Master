@@ -1,4 +1,183 @@
 \chapter{Interaction Devices}
+\label{chap:interaction}
+An important part of playing a game is being able to interact with it.
+
+\note{Skrive noe om motivasjonen til å ha med interaction devices.}
+% se på forskjellige interaction devices for å se hva som kan brukes.
+
+
 \section{Conventional Interaction Devices}
+\subsection{Joystick}
+With the introduction of game consoles came the need for a more standardized device for interacting with games.
+The versatile joystick has been an important part of fulfilling this need.
+A joystick, along with one or two buttons, was normal for the early consoles.
+Atari 2600 is one such example, shown in Figure \ref{fig:atari2600}.
+Later it has become a small, but important part of most controllers as a thumbstick.
+\hfigure{atari2600}{The joystick used for the Atari 2600}{0.7}
+\subsection{Gamepad}
+As games became more complex, requirements for the controller also increased.
+More buttons and new elements were added and the joystick eventually reappeared as one or more thumbsticks on the gamepad.
+This section describes how the gamepad has changed throughout the years and how it has changed the way games are played.
+A paper written by Cummings \cite{cummings2007evolution} on the subject is the primary source for this section.
+
+% \gls{nes}, gamepad, d-pad, why it was successful % cite evolution
+\gls{nes} was one of the first systems to use the gamepad.
+It had two buttons and a \gls{dpad}.
+One of the primary advantages of a joystick is in its ability to give analogue feedback.
+The joysticks used in game consoles did not have this feature at the time, nor did they need analogue input, so the \gls{dpad} could provide the same accuracy of input with less movement.
+
+% Is there an intermediate step, technology, historical detail?
+
+% thumbstick. n64 & super mario 64
+While the \gls{dpad} provides sufficient input for 2D games, it is not sufficient for 3D games.
+With the development of Super Mario 64 for Nintendo's \gls{n64} console, they needed a controls scheme that could control the protagonist in a 3D environment.
+% Hardware and software worked together to find a suitable controls.
+Through collaboration between hardware and software developers, the controller for the \gls{n64} was created.
+The controller, seen in Figure \ref{fig:gamepads} (bottom left), had an analogue joystick for controlling Mario in the 3D environment. % Figure
+Separate buttons were used to manually adjust the camera angle.
+By collaborating they could create a good control scheme that worked smoothly with the game.
+As this was the first use of an analogue joystick for this purpose, the collaboration was a very useful tool for creating a solid system.
+A second thumbstick has since become a common part of the gamepad after it was introduced for the \gls{ps1}.
+Four different gamepads for Nintendo consoles are shown in Figure \ref{fig:gamepads}.
+These show the changes from the \gls{nes} through the \gls{snes} and \gls{n64} to the GameCube.
+\hfigure{gamepads}{The gamepads for four generations of Nintendo consoles. NES (top left), SNES (top right), N64 (bottom left), and GameCube (bottom right)}{0.7}
+
+% Haptic feedback / force feedback
+Haptic feedback, often referred to as force feedback in the context of video games, is another technology added to the gamepad.
+First in the Rumble Pak for the \gls{n64} which was an addition to the controller to make it shake.
+Force feedback, in the form of shaking the gamepad, has since become common in console controllers.
+This extra form of feedback can, among other things, tell the player that they have crashed or have been hit, as it did in the \gls{n64} game Starfox 64.
+
+% More analogue controls (buttons, triggers)
+Analogue input is not limited to joysticks.
+A common use of analogue buttons on gamepads are the triggers.
+An analogue trigger can for instance be used as the accelerator in a racing or driving game.
+
+% New gamepads elite + steam
+
+\subsection{Keyboard and Mouse}
+The quantity of keys on the keyboard and later also the precision of the mouse as a pointing device gave new options for how games could be played.
+New genres and games followed.
+Among these were \gls{rts} games like Command \& Conquer and point-and-click games like Monkey Island.
+% TODO \cite cummingsEvolution(?)
+A good example of how well the keyboard and mouse setup can be for some genres, is that the control scheme for the \gls{rts} genre has stayed relatively unchanged since the beginning. An example of a keyboard and mouse can be seen in Figure \ref{fig:kbam}
+% History of FPS (also cummingsEvolution(?))
+
+\hfigure{kbam}{Keyboard and Mouse}{0.7}
+
+
 \section{Motion Control Devices}
+\subsection{Nintendo Wiimote}
+\label{wiimote}
+%TODO write more about how these things changed gameplay
+\hfigure{wiimote}{Wiimote}{0.5}
+When Nintendo released their Wii console in 2006 \cite{overmars2012} their new controller, the Wiimote, did not resemble the ones used by their competitors.
+The controller was in shape to a television remote, but more technically complex in functionality.
+% Casual
+Before the release of \gls{wii}, controllers and games were getting increasingly complex.
+By making the controller for their new home console simpler, Nintendo aimed for a different market than their competitors: new and casual gamers.
+Quite contradictory to the predicted downfall of Nintendo after the release, \gls{wii} became the most popular console of the generation.
+The revolutionary controller, along with a cheap price tag, may have been the reason for this \cite{overmars2012}.
+
+% Can be used as a gamepad (by holding it sideways)
+Although the Wiimote can be used as a gamepad by holding it sideways, this is not its primary function. % rephrase to "mode of operation"?
+The next five sections describe how it differs from a typical gamepad and how it changes the way games can be played. % Number of sections!
+
+For more information about how the technology of the Wiimote and how it can function as a spacially convenient device for 3D interfaces, see \cite{lee2008hacking,wingrave2010wiimote}.
+
+\subsection{Microsoft Kinect}
+% History: Microsoft, XBox
+Microsoft Kinect is an input device for Microsoft's Xbox consoles.
+It was first introduced for the \gls{xb360} and had a camera, an \gls{ir} depth sensor, and a multi-microphone array. % Needs source and cite
+Using this technology it can track players, motion, and gestures in 3D space. % Fact-check and cite
+% Providing API for PC may have been a very smart move (find source)
+Microsoft has also provided an API for PC which makes it possible to use the Kinect for other purposes like research and even combining it with other technologies to create new innovations \cite{2015kinect}.
+% Among these are 3D scanning of objects, and use in games and other applications on a PC. %% Find source(s)
+% Opens for development for private / smaller companies. %% Find source(s)
+
+\hfigure{kinect}{Kinect}{1}
+
+%% Needs more info
+%% Facial recognition?
+% And other things (?)
+% Examples and games
+% Pros and cons % Get sources? % Get more examples
+One advantage of the Kinect is that it can encourage physical activity for the players.
+A disadvantage of the Kinect is that it requires open space to prevent damage to players and surroundings.
+
+\subsection{PlayStation Move}
+\label{sec:psmove}
+% Wiimote + Kinect (ish)
+The PlayStation Move has similarities to the Wiimote described in Section \ref{wiimote}, but has different features and functions differently.
+On top of the controller there is a ball which can light up in different colours.
+A PlayStation Eye USB Camera can track the position of the controllers by tracking these balls.
+Distance to the camera can be calculated using the apparent size of the ball.
+The controller also has one analogue trigger and eight buttons, along with accelerometers and gyroscopes for tracking 3D position.
+Figure \ref{fig:psmove} shows the controller and camera.
+\hfigure{psmove}{PlayStation Move and PlayStation Eye}{0.5}
+% pros
+% cons
+
+
 \section{Specialized Controllers}
+Controllers made specifically for a single game or a specific genre of games is not exclusive to arcades.
+They have been created for both PC games and home consoles too.
+Some constructed to supplement or improve an existing game, others designed as a critical part of a game.
+%% Some common, some rare. Some for specially interested.
+% Realworld analogues
+% Arcade-like for homes
+
+\subsection{Driving games}
+% Racing, driving
+Racing games is a popular genre and there are many other genres that involves driving.
+A steering wheel provides intuitive controls to these types of games.
+% Pedals
+The addition of pedals further realism to the driving experience.
+% Manual shift
+In some cases, even a controller for manual shifting is possible.
+
+% Extra buttons
+These types of controllers may also have additional buttons and other inputs to navigate menus, as seen in Figure \ref{fig:wheel}.
+\hfigure{wheel}{Pedals and steering wheel with buttons for navigating menus.}{0.5}
+
+
+\subsection{Flight Simulators}
+% Interseting because of the complexity
+An interesting example of specialized controllers is the, sometimes very complex, setups made by flight simulator enthusiasts.
+It is possible to get a yoke and from there keys, switches, and other instrument panels can be added.
+% Early(?)
+% Enthusiasts
+% Yoke, many buttons and switches
+
+\subsection{Light Guns}
+\label{lightguns}
+Light gun controllers are based on a camera and a source of light.
+The point of light is used to determine where the light gun is pointed.
+In the example of Wiimotes, the source of light is the Sensorbar, as discussed in Section \ref{wiiPointing}.
+It is worth noting that the Sensorbar has multiple \gls{ir} LEDs used to provide orientation in addition to position.
+For the older game Duck Hunt \cite{duckhunt1984}, seen in Figure \ref{fig:duckhunt}, the light source is the television screen.
+The entire screen turns black, except for a small dot located where the player should be aiming, for a short time.
+\hfigure{duckhunt}{Screenshot from Duck Hunt}{0.7}
+% Duck hunt, wii
+% Lightguns, ..., other variations
+
+\subsection{Rhythm Games}
+% (Early rythm games did not have custom controllers. Find the citation if used.)
+A very common category of controllers created as a critical part of a game are the ones used in rhythm games.
+Instruments that are simplified versions of the real thing or in some cases almost lifelike.
+Dance mats and motion tracking.
+Even microphones can be used as a controller for rhythm games.
+
+% TODO Sources! Consider mentioning the name of the games or just keep the names of games in the citations
+\hfigure{rockband}{Instruments from the Rock Band franchise}{0.35}
+% Guitar hero, Rock band
+Common examples are games that simulate the experience of playing in a band.
+To play these, special controllers made to look like instruments are required.
+Figure \ref{fig:rockband} shows an example of such instruments used for games in the Rock Band franchise.
+% Dance mat
+Dancing is another common example, where the position of the player's feet on the ground typically is the input for the game.
+More recent games has also used cameras or motion detection controllers.
+
+\section{Summary}
+\note{Skriv summary}
+%ha med hva som er mest aktuelt for oppgaven.

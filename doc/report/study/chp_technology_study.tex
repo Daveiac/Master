@@ -1,4 +1,55 @@
 \chapter{Game Development Technologies}
+This chapter will take a look into what technologies are available for independent video game developers in order to create video games. The main topics include game engines, software tools like version control and programming languages, and game resources such as audio and graphics.
+
+
 \section{Game Engines}
-\section{Version Control}
+A game engine is a tool to help with the development of a video game. Game exist to abstract away complicated tasks that are common in video games, like physics simulation, visual rendering, graphical user interfaces, and input. By using a game engine, more time can be spent focusing on the gameplay and elements that make up the actual game, such as game design, story, and how different objects interact in the game world. This is especially useful for independent developers which may not have the resources or expertise to create all of the components for a video game from scratch. \cite{ward2008engine}
+
+The benefit of using a game engine is that a lot of the hard work has already been done, usually by someone with expertise, and the game engine has been tried and tested before. However, using a game engine can also be limiting, in the fact that the developer does not have full control over how specific things are handled and has to rely on using the constructs of the game engine in order to achieve the desired outcome. Game engines can also homogenize games, by using the same game engines games often have a similar feel to them in terms of movement and physics interaction. \cite{enger2013engine}
+
+Two of the most popular game engines are Unreal Engine and Unity. Both of these engines have big communities and free entry into creating video games \cite{malik2016engine}. The two following sections will take a look into the features and limitations of these game engines.
+
+\subsection{Unreal Engine 4}
+%intro, most notable features + editor
+Unreal Engine 4 is a game engine created by Epic Games which is known for its powerful visual graphics engine. It supports dynamic lighting and shadows, photo realistic shaders, and has a particle system that can handle millions of particles at once. The built-in editor makes it easy to debug and test the game during development with features like Hot Reload and Instant Game Preview. Hot Reload makes it possible to update the game code while playing, and Instant Game Preview is an in-editor view of the game that can be launched to test or preview any part of the game.
+
+%programming language and blueprints - special feature
+The programming language used when creating games for Unreal Engine 4 is C++, which the engine itself is created with, but it also supports visual scripting which is called Blueprints. Blueprints are meant to be easy to use by anyone, and is a way to create quick prototypes and build playable content without writing code. The full C++ source code for the engine is also made available, which enables customization of the Unreal Engine subsystems, including physics, networking, and the editor itself.
+
+%other features that it supports + licencing.
+Other notable features of the Unreal Enigne 4 include Artificial Intelligence implementation, support for \gls{vr}, and integration with middleware technologies, like NVIDIA PhysX, AutoDesk Ganeware, and Oculus VR. Unreal Engine is free to use, with a 5\% royalty on product revenue after the first USD 3 000 for commercial products. More information about the features and licensing of Unreal Engine 4 can be found on their website \cite{unreal2016engine}.
+
+
+\subsection{Unity3d 5}
+Unity3d 5, created by Unity Technologies, focuses on being an easy to use, but powerful game engine. It has support for multiple platforms including desktops, consoles and mobile platforms. Unity has a strong community and is popular among independent developers, especially for creating mobile games. Unity was the world's leading engine for developing mobile games in 2012 \cite{bratcher2013unity}.
+
+The Unity editor is made to be extendible tool, and has its own store with over 1 700 free and paid extensions to enhance the editor. These extensions consist of game assets like textures and audio, starter projects, particle systems, and shaders. The editor has a Play Mode, that supports rapid interactive editing, with pausing and frame by frame stepping for easy debugging. Games can also be viewed from the perspective of specific platforms in order to easily test and develop for different platforms simultaneously. In terms of programming languages, Unity supports C\# and UnityScript. UnityScript is a custom language specific for unity and is based on JavaScript. \cite{unity2016editor, unity2016script}
+
+There are two main versions of Unity3d 5, Personal Edition and Professional Edition, neither of which have any royalty fees. Personal edition is a free alternative made for individuals and small teams with full access to the game engine and its features, at the cost of having a Unity splash screen at the start of the game. There is also a limit to how much revenue and funding that can be received while still using the Personal Edition. Professional Edition has additional features, like cloud services for building and game analysis, and prioritized bug reporting. The price for Professional edition is USD 75 per month, or a perpetual licence for USD 1 500. There are also other alternatives for enterprise and educational editions. The source code for the engine can be licensed for users of the professional or enterprise editions. \cite{unity2016get}
+
+\subsection{Other Engines}
+There are other feature rich game engines out there for both corporations and individual developers. Licensing for game engines have traditionally been expensive, but they have become more affordable in the later years. In May 2016, CryTek cut their licensing fees completely and released the full source, as well as a pay what you want licencing model without royalties, for their game engine CryEngine \cite{papadopoulos2016cry}. CryEngine is known for producing games with beautiful graphics like the Crysis games. 
+Hero Engine is an engine for creating MMO games with support for seamless transition between maps and a robust AI system. It is quite expensive though with a starting price of USD 99 per year, and 30\% of revenue as royalties \cite{fabrik2016licence}.
+GameMaker:Studio is a simple and straight forward engine created by YoYo Games for creating 2D games. It prides itself on being easy to use, and the engine also features a free version \cite{yoyo2016gamemaker}.
+Wave Engine is a relatively new game engine, released in 2013 by Wave Corporation, that focuses on mobile gaming. It is free to use with no royalties, except the obligation to include their logo in the splash screen of the game \cite{wave2016engine}. 
+
+Some game engines are not available for licensing though, and are exclusive to the companies that created them. Examples of this include Rage Engine, by Rockstar used for Grand Theft Auto IV, Luminous Engine by Square Enix used for Final Fantasy XIII, and Anvil by Ubisoft used for Assassins Creed \cite{1up2008gta, makuzawa2015final, bayer2009assassins}. An overview of game engines available for independent developers can be found on IndieDB's website \cite{indiedb2015engine}.
+
 \section{Game Resources}
+In addition to game engines, there are other tools and resources needed in order to create and distribute video games. This section gives an overview on what resources are available for independent develops to aid in game making. This section is based on an overview by Pixelprospector, a site that offers information and lists of resources related to these topics \cite{pixel2016prospector}.
+
+\subsection{Software Tools}
+Other than game engines, important software tools include Integrated Development Environments (IDE), version control systems, and project management software. The IDE and programming language used is usually dependent on the game engine chosen. An IDE is a tool for writing source code for the game and normally contain a compiler and a debugger. IDEs are meant to assist the developer in writing code and increasing productivity by providing easy management and editing of the code base for the game.
+
+Another important software tool is version control. A version control system records changes to files, in order to recall different versions of the files later. It enables useful features like reverting files to a previous state, reverting the whole project to a previous state, and comparing changes over time. It is also useful if the code somehow gets lost or broken. \cite{git2016vcs}
+
+\subsection{Graphics and Audio}
+Graphics and audio, referred to as game assets, are important for the look and feel of a video game and is a central part in creating immersion. Graphics is considered anything visual from 3D textures and models to 2D pixel sprites and backgrounds. Audio is background music as well as sound effects of the game. Getting game assets for a game is usually done in three ways: creating game assets using software, hiring a graphical or sound designer to do it, or acquire pre-made free or paid game assets. The method for acquiring game assets is dependent on the game developers' expertise and resources.
+
+\subsection{Distribution}
+The distribution of a video game can be done in different ways, this section only covers digital distribution. Games can be directly distributed via a payment processor, or indirectly distributed via a digital game store. Direct distribution are usually done on the developers website, or on a site provided by a payment processor, where the developer has control of the presentation and distribution of the game. Payment processors are often used to handle the payment itself, they can host the game and offers various payment options like credit card, PayPal, and Google Checkout. Payment processors often take a fee or a percentage of revenue for handling the payment, but some payment processors are free, like itch.io \cite{itchio2016payment}.
+
+Distribution can also be done via a digital store, like Steam, GOG, or Humble Store. The main advantage of using a store is that it provides marketing and is a way for players to discover new games.
+
+\section{Summary}
+\note{Write summary!}
