@@ -6,7 +6,16 @@ public class SideScroller1 : ModuleRules
 {
 	public SideScroller1(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "UMG"});
+        //Folders to work with:
+        PrivateIncludePaths.AddRange(new string[] {
+             "SideScroller1",
+             "SideScroller1/Characters",
+             "SideScroller1/Game",
+             "SideScroller1/Items",
+             "SideScroller1/World"
+         });
+
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "UMG"});
 
         PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
     }
