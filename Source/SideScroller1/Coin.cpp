@@ -5,11 +5,11 @@
 #include "Kismet/GameplayStatics.h"
 #include "MainGameMode.h"
 #include "MainCharacter.h"
-#include "PickupItem.h"
+#include "Coin.h"
 
 
 // Sets default values
-APickupItem::APickupItem()
+ACoin::ACoin()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -41,13 +41,13 @@ APickupItem::APickupItem()
 }
 
 // Called every frame
-void APickupItem::Tick( float DeltaTime )
+void ACoin::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
 }
 
-void APickupItem::NotifyActorBeginOverlap(AActor * OtherActor)
+void ACoin::NotifyActorBeginOverlap(AActor * OtherActor)
 {
 	if (AMainGameMode *GameMode = Cast<AMainGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
 	{
@@ -59,4 +59,3 @@ void APickupItem::NotifyActorBeginOverlap(AActor * OtherActor)
 		}
 	}
 }
-
