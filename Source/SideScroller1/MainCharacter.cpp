@@ -23,8 +23,8 @@ AMainCharacter::AMainCharacter()
 		ConstructorHelpers::FObjectFinderOptional<USoundCue> FootstepsSound;
 		ConstructorHelpers::FObjectFinderOptional<USoundWave> DeathSound;
 		FConstructorStatics()
-			: RunningAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/RunningAnimation.RunningAnimation"))
-			, IdleAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/IdleAnimation.IdleAnimation"))
+			: RunningAnimationAsset(TEXT("PaperFlipbook'/Game/2DSideScroller/Sprites/Character/Player1/p1_walk_FB.p1_walk_FB'"))
+			, IdleAnimationAsset(TEXT("PaperFlipbook'/Game/2DSideScroller/Sprites/Character/Player1/p1_stand_FB.p1_stand_FB'"))
 			, DamageCharacterSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/TakeDamage.TakeDamage'"))
 			, FootstepsSound(TEXT("SoundCue'/Game/2DSideScroller/Sound/SFX/Footstep_Cue.Footstep_Cue'"))
 			, DeathSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/death.death'"))
