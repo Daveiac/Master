@@ -4,7 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "PaperSpriteComponent.h"
 #include "PaperSprite.h"
-#include "SideScroller1Character.h"
+#include "MainCharacter.h"
 #include "Item.h"
 #include "Switch.h"
 #include "Hand.h"
@@ -64,7 +64,7 @@ void AHand::Tick( float DeltaTime )
 	Super::Tick( DeltaTime );
 
 	// Keep the hand in view of the Camera
-	ASideScroller1Character *Character = Cast<ASideScroller1Character>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	AMainCharacter *Character = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 	float CamRadiusX = Character->GetSideViewCameraComponent()->OrthoWidth / 2;
 	float CamRadiusZ = CamRadiusX / Character->GetSideViewCameraComponent()->AspectRatio;
 	float CamZOffset = Character->GetCameraBoom()->SocketOffset.Z;

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "PaperCharacter.h"
-#include "SideScroller1Character.generated.h"
+#include "MainCharacter.generated.h"
 
 // This class is the default character for SideScroller1, and it is responsible for all
 // physical interaction between the player and the world.
@@ -15,7 +15,7 @@
 class UTextRenderComponent;
 
 UCLASS(config=Game)
-class ASideScroller1Character : public APaperCharacter
+class AMainCharacter : public APaperCharacter
 {
 	GENERATED_BODY()
 
@@ -73,7 +73,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Health")
 	bool bIsInvincible;
 
-	ASideScroller1Character();
+	AMainCharacter();
 
 	/** Returns SideViewCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
@@ -82,7 +82,7 @@ public:
 	
 	// Subtracts Damage from the Characters health value
 	UFUNCTION(BlueprintCallable, Category = "Health")
-	void TakeDamage(int32 Damage);
+	void DamageCharacter(int32 Damage);
 
 	// Subtracts Damage from the Characters health value
 	UFUNCTION(BlueprintCallable, Category = "Health")

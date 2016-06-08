@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SideScroller1.h"
-#include "SideScroller1Character.h"
-#include "SideScroller1GameMode.h"
+#include "MainCharacter.h"
+#include "MainGameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "Item.h"
 
@@ -17,7 +17,7 @@ void AItem::PickUp()
 	PaperSpriteComponent->SetSimulatePhysics(false);
 	if (PlacementSprite)
 		PaperSpriteComponent->SetSprite(PlacementSprite);
-	Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this))->AddToInventory(this);
+	Cast<AMainGameMode>(UGameplayStatics::GetGameMode(this))->AddToInventory(this);
 }
 
 void AItem::Grab()
@@ -141,7 +141,7 @@ void AItem::OnOverlapBegin(AActor *OtherActor)
 	if (bIsActive && OtherActor != nullptr && OtherActor != this)
 	{
 		// Check if the OtherActor is a Character
-		if (Cast<ASideScroller1Character>(OtherActor))
+		if (Cast<AMainCharacter>(OtherActor))
 		{
 			PickUp();
 		}
@@ -150,7 +150,7 @@ void AItem::OnOverlapBegin(AActor *OtherActor)
 
 void AItem::DoOnClicked()
 {
-	ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this));
+	AMainGameMode *GameMode = Cast<AMainGameMode>(UGameplayStatics::GetGameMode(this));
 	if (bIsGrabbed)
 	{
 		if (Release())

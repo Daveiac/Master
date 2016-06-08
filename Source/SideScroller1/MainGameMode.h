@@ -3,15 +3,15 @@
 #pragma once
 #include "GameFramework/GameMode.h"
 #include "Item.h"
-#include "SideScroller1GameMode.generated.h"
+#include "MainGameMode.generated.h"
 
 // The GameMode defines the game being played. It governs the game rules, scoring, what actors
 // are allowed to exist in this game type, and who may enter the game.
 //
-// This game mode just sets the default pawn to be the MyCharacter asset, which is a subclass of SideScroller1Character
+// This game mode just sets the default pawn to be the MyCharacter asset, which is a subclass of MainCharacter
 
 UCLASS(minimalapi)
-class ASideScroller1GameMode : public AGameMode
+class AMainGameMode : public AGameMode
 {
 	GENERATED_BODY()
 
@@ -22,7 +22,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Score")
 	int32 Score;
 
-	ASideScroller1GameMode();
+	AMainGameMode();
 	virtual void BeginPlay() override;
 
 	// Called every frame

@@ -1,8 +1,8 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
 #include "SideScroller1.h"
-#include "SideScroller1Character.h"
-#include "SideScroller1GameMode.h"
+#include "MainCharacter.h"
+#include "MainGameMode.h"
 #include "PaperFlipbookComponent.h"
 #include "Components/TextRenderComponent.h"
 
@@ -10,22 +10,22 @@
 
 DEFINE_LOG_CATEGORY_STATIC(SideScrollerCharacter, Log, All);
 //////////////////////////////////////////////////////////////////////////
-// ASideScroller1Character
+// AMainCharacter
 
-ASideScroller1Character::ASideScroller1Character()
+AMainCharacter::AMainCharacter()
 {
 	// Setup the assets
 	struct FConstructorStatics
 	{
 		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> RunningAnimationAsset;
 		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> IdleAnimationAsset;
-		ConstructorHelpers::FObjectFinderOptional<USoundWave> TakeDamageSound;
+		ConstructorHelpers::FObjectFinderOptional<USoundWave> DamageCharacterSound;
 		ConstructorHelpers::FObjectFinderOptional<USoundCue> FootstepsSound;
 		ConstructorHelpers::FObjectFinderOptional<USoundWave> DeathSound;
 		FConstructorStatics()
 			: RunningAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/RunningAnimation.RunningAnimation"))
 			, IdleAnimationAsset(TEXT("/Game/2dSideScroller/Sprites/IdleAnimation.IdleAnimation"))
-			, TakeDamageSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/TakeDamage.TakeDamage'"))
+			, DamageCharacterSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/TakeDamage.TakeDamage'"))
 			, FootstepsSound(TEXT("SoundCue'/Game/2DSideScroller/Sound/SFX/Footstep_Cue.Footstep_Cue'"))
 			, DeathSound(TEXT("SoundWave'/Game/2DSideScroller/Sound/SFX/death.death'"))
 		{
@@ -100,8 +100,8 @@ ASideScroller1Character::ASideScroller1Character()
 	Health = 10;
 	
 	// Create Sound Components
-	SoundDamageTaken = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("TakeDamage"));
-	SoundDamageTaken->SetSound(ConstructorStatics.TakeDamageSound.Get());
+	SoundDamageTaken = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("DamageCharacter"));
+	SoundDamageTaken->SetSound(ConstructorStatics.DamageCharacterSound.Get());
 	SoundDamageTaken->bAutoActivate = false;
 
 	SoundFootsteps = CreateAbstractDefaultSubobject<UAudioComponent>(TEXT("Footsteps"));
@@ -118,7 +118,7 @@ ASideScroller1Character::ASideScroller1Character()
 //////////////////////////////////////////////////////////////////////////
 // Animation
 
-void ASideScroller1Character::UpdateAnimation()
+void AMainCharacter::UpdateAnimation()
 {
 	const FVector PlayerVelocity = GetVelocity();
 	const float PlayerSpeed = PlayerVelocity.Size();
@@ -131,7 +131,7 @@ void ASideScroller1Character::UpdateAnimation()
 	}
 }
 
-void ASideScroller1Character::Tick(float DeltaSeconds)
+void AMainCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
@@ -142,35 +142,35 @@ void ASideScroller1Character::Tick(float DeltaSeconds)
 //////////////////////////////////////////////////////////////////////////
 // Input
 
-void ASideScroller1Character::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+void AMainCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	// Note: the 'Jump' action and the 'MoveRight' axis are bound to actual keys/buttons/sticks in DefaultInput.ini (editable from Project Settings..Input)
 	InputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	InputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-	InputComponent->BindAxis("MoveRight", this, &ASideScroller1Character::MoveRight);
+	InputComponent->BindAxis("MoveRight", this, &AMainCharacter::MoveRight);
 
-	InputComponent->BindTouch(IE_Pressed, this, &ASideScroller1Character::TouchStarted);
-	InputComponent->BindTouch(IE_Released, this, &ASideScroller1Character::TouchStopped);
+	InputComponent->BindTouch(IE_Pressed, this, &AMainCharacter::TouchStarted);
+	InputComponent->BindTouch(IE_Released, this, &AMainCharacter::TouchStopped);
 }
 
-void ASideScroller1Character::MoveRight(float Value)
+void AMainCharacter::MoveRight(float Value)
 {
 	// Apply the input to the character motion
 	AddMovementInput(FVector(1.0f, 0.0f, 0.0f), Value);
 }
 
-void ASideScroller1Character::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
+void AMainCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	// jump on any touch
 	Jump();
 }
 
-void ASideScroller1Character::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
+void AMainCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	StopJumping();
 }
 
-void ASideScroller1Character::UpdateCharacter()
+void AMainCharacter::UpdateCharacter()
 {
 	// Update animation to match the motion
 	UpdateAnimation();
@@ -194,7 +194,7 @@ void ASideScroller1Character::UpdateCharacter()
 	}
 }
 
-void ASideScroller1Character::TakeDamage(int32 Damage)
+void AMainCharacter::DamageCharacter(int32 Damage)
 {
 	if (bIsInvincible) return;
 	Health -= Damage;
@@ -204,34 +204,34 @@ void ASideScroller1Character::TakeDamage(int32 Damage)
 	}
 	FTimerHandle InvincibilityTimer;
 	bIsInvincible = true;
-	GetWorldTimerManager().SetTimer(InvincibilityTimer, this, &ASideScroller1Character::SetNotInvincible, 0.5f); // TODO variable invincibilitytimer
+	GetWorldTimerManager().SetTimer(InvincibilityTimer, this, &AMainCharacter::SetNotInvincible, 0.5f); // TODO variable invincibilitytimer
 
-	if (ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(GetWorld())))
+	if (AMainGameMode *GameMode = Cast<AMainGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
 	{
 		GameMode->RefreshHearts();
 	}
 	SoundDamageTaken->Play();
 }
 
-int32 ASideScroller1Character::GetHealth()
+int32 AMainCharacter::GetHealth()
 {
 	return Health;
 }
 
-void ASideScroller1Character::SetNotInvincible()
+void AMainCharacter::SetNotInvincible()
 {
 	bIsInvincible = false;
 }
 
-void ASideScroller1Character::Kill()
+void AMainCharacter::Kill()
 {
 	SoundDeath->Play();
 	DisableInput(UGameplayStatics::GetPlayerController(GetWorld(), 0));
 	FTimerHandle DeathTimer;
-	GetWorldTimerManager().SetTimer(DeathTimer, this, &ASideScroller1Character::RestartLevel, 0.45);
+	GetWorldTimerManager().SetTimer(DeathTimer, this, &AMainCharacter::RestartLevel, 0.45);
 }
 
-void ASideScroller1Character::RestartLevel()
+void AMainCharacter::RestartLevel()
 {
 	UGameplayStatics::OpenLevel(GetWorld(), FName(*UGameplayStatics::GetCurrentLevelName(GetWorld())));
 }

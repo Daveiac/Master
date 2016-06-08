@@ -3,8 +3,8 @@
 #include "SideScroller1.h"
 #include "PaperSpriteComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "SideScroller1GameMode.h"
-#include "SideScroller1Character.h"
+#include "MainGameMode.h"
+#include "MainCharacter.h"
 #include "PickupItem.h"
 
 
@@ -49,9 +49,9 @@ void APickupItem::Tick( float DeltaTime )
 
 void APickupItem::NotifyActorBeginOverlap(AActor * OtherActor)
 {
-	if (ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(GetWorld())))
+	if (AMainGameMode *GameMode = Cast<AMainGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
 	{
-		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(OtherActor))
+		if (AMainCharacter *Character = Cast<AMainCharacter>(OtherActor))
 		{
 			GameMode->AddToScore(ScoreValue);
 			PickupSound->Play();

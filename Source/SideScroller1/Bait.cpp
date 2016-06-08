@@ -3,7 +3,7 @@
 #include "SideScroller1.h"
 #include "Bait.h"
 #include "PaperSpriteComponent.h"
-#include "SideScroller1GameMode.h"
+#include "MainGameMode.h"
 #include "PaperFlipbook.h"
 
 
@@ -52,7 +52,7 @@ void ABait::BeEaten(int32 FrameSkip = 1)
 		UPaperSprite *Sprite = BaitFB->GetSpriteAtFrame(CurrentFrame);
 		PaperSpriteComponent->SetSprite(Sprite);
 		InventoryIcon = Sprite->GetBakedTexture();
-		if (ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this)))
+		if (AMainGameMode *GameMode = Cast<AMainGameMode>(UGameplayStatics::GetGameMode(this)))
 			GameMode->RefreshInventory();
 	}
 }

@@ -3,7 +3,7 @@
 #include "SideScroller1.h"
 #include "PaperFlipbookComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "SideScroller1Character.h"
+#include "MainCharacter.h"
 #include "Bait.h"
 #include "Enemy.h"
 
@@ -199,11 +199,11 @@ void AEnemy::OnHit(AActor* SelfActor, AActor* OtherActor, FVector NormalImpulse,
 	if (OtherActor != nullptr && OtherActor != this)
 	{
 		// Check if the OtherActor is a Character
-		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(OtherActor))
+		if (AMainCharacter *Character = Cast<AMainCharacter>(OtherActor))
 		{
 			if (!Character->bIsInvincible)
 				Character->LaunchCharacter(FVector(-500 * Hit.Normal.X, 0, 0), false, false);
-			Character->TakeDamage(1);
+			Character->DamageCharacter(1);
 		}
 	}
 }

@@ -2,8 +2,8 @@
 
 #include "SideScroller1.h"
 #include "PaperFlipbookComponent.h"
-#include "SideScroller1Character.h"
-#include "SideScroller1GameMode.h"
+#include "MainCharacter.h"
+#include "MainGameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Goal.h"
@@ -46,7 +46,7 @@ void AGoal::Tick(float DeltaSeconds)
 {
 	if (!bIsActive)
 	{
-		if (ASideScroller1GameMode *GameMode = Cast<ASideScroller1GameMode>(UGameplayStatics::GetGameMode(this)))
+		if (AMainGameMode *GameMode = Cast<AMainGameMode>(UGameplayStatics::GetGameMode(this)))
 		{
 			if (GameMode->Score >= MaxScore)
 				SetIsActive(true);
@@ -58,7 +58,7 @@ void AGoal::NotifyActorBeginOverlap(AActor *OtherActor)
 {
 	if (bIsActive)
 	{
-		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(OtherActor))
+		if (AMainCharacter *Character = Cast<AMainCharacter>(OtherActor))
 		{
 			LevelCompletedSound->Play();
 			Character->DisableInput(UGameplayStatics::GetPlayerController(GetWorld(), 0));

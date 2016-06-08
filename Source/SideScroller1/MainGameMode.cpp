@@ -1,20 +1,20 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
 #include "SideScroller1.h"
-#include "SideScroller1GameMode.h"
-#include "SideScroller1Character.h"
+#include "MainGameMode.h"
+#include "MainCharacter.h"
 #include "Blueprint/UserWidget.h"
 
-ASideScroller1GameMode::ASideScroller1GameMode()
+AMainGameMode::AMainGameMode()
 {
 	// set default pawn class to our character
-	DefaultPawnClass = ASideScroller1Character::StaticClass();
+	DefaultPawnClass = AMainCharacter::StaticClass();
 
 	// Set Tickable
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-void ASideScroller1GameMode::BeginPlay()
+void AMainGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 	// Setup inventory HUD
@@ -41,23 +41,23 @@ void ASideScroller1GameMode::BeginPlay()
 	Score = 0;
 }
 
-void ASideScroller1GameMode::Tick(float DeltaSeconds)
+void AMainGameMode::Tick(float DeltaSeconds)
 {
 	
 }
 
-TArray<AItem*> ASideScroller1GameMode::GetInventory()
+TArray<AItem*> AMainGameMode::GetInventory()
 {
 	return Inventory;
 }
 
-void ASideScroller1GameMode::AddToInventory(AItem *AnItem)
+void AMainGameMode::AddToInventory(AItem *AnItem)
 {
 	Inventory.Add(AnItem);
 	RefreshInventory();
 }
 
-void ASideScroller1GameMode::OnInventorySlotPressed(int32 Slot)
+void AMainGameMode::OnInventorySlotPressed(int32 Slot)
 {
 	if (!GrabbedItem)
 	{
@@ -66,19 +66,19 @@ void ASideScroller1GameMode::OnInventorySlotPressed(int32 Slot)
 	}
 }
 
-void ASideScroller1GameMode::OnInventorySlotReleased(AItem *Item)
+void AMainGameMode::OnInventorySlotReleased(AItem *Item)
 {
 	GrabbedItem = nullptr;
 	Inventory.Remove(Item);
 	RefreshInventory();
 }
 
-bool ASideScroller1GameMode::HasGrabbedItem()
+bool AMainGameMode::HasGrabbedItem()
 {
 	return (GrabbedItem)? true: false;
 }
 
-void ASideScroller1GameMode::AddToScore(int32 Score)
+void AMainGameMode::AddToScore(int32 Score)
 {
 	this->Score += Score;
 }

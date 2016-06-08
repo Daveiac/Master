@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SideScroller1.h"
-#include "SideScroller1Character.h"
+#include "MainCharacter.h"
 #include "PaperSpriteComponent.h"
 #include "Spikes.h"
 
@@ -38,12 +38,12 @@ void ASpikes::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrimitive
 	if (Other != nullptr && Other != this)
 	{
 		// Check if the OtherActor is a Character
-		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(Other))
+		if (AMainCharacter *Character = Cast<AMainCharacter>(Other))
 		{
 			if (HitNormal.Z < -0.1)
 			{
 				SpikeHitSound->Play();
-				Character->TakeDamage(2);
+				Character->DamageCharacter(2);
 				Character->LaunchCharacter(FVector(0, 0, Character->GetCharacterMovement()->JumpZVelocity * 0.7f), false, false);
 			}
 		}

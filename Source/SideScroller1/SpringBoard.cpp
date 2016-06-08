@@ -2,7 +2,7 @@
 
 #include "SideScroller1.h"
 #include "PaperSpriteComponent.h"
-#include "SideScroller1Character.h"
+#include "MainCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "SpringBoard.h"
 
@@ -46,7 +46,7 @@ void ASpringBoard::NotifyHit(UPrimitiveComponent * MyComp, AActor * Other, UPrim
 	if (Other != nullptr && Other != this)
 	{
 		// Check if the OtherActor is a Character
-		if (ASideScroller1Character *Character = Cast<ASideScroller1Character>(Other))
+		if (AMainCharacter *Character = Cast<AMainCharacter>(Other))
 		{
 			if (HitNormal.Z < -0.1 && bIsReady)
 			{
