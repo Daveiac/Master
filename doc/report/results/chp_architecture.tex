@@ -1,15 +1,43 @@
 \chapter{Architecture}
+This chapter describes the software architecture of the game prototype. It contains architectural drivers, patterns, views and tactics.
+
+
 \section{Drivers}
-%Motivation
-%expected life time
-%limitations of technology/skills etc.
-\section{Patterns}
-%architectural patterns like mvc etc.
+\subsection{Motivation}
+The game prototype would be played by children, so the game controls and gameplay had to be easy to understand. The author also wants the game to be easy to develop for, so the game had to be easy to modify and add new features. This set the focus for the quality attributes usability and modifiability. With high usability it should be easy for the children to enjoy the game without being frustrated by the controls or gameplay elements. Focusing on modifiability it should be easy for the developer to add new features, like enemies, items, and levels.
+
+\subsection{Expected Life Time}
+The game prototype will be developed for a play testing session during the course of this project, after which the development will end. The game will not be ready for release and will be a purely gameplay prototype without a story, menus or other common non-gameplay elements. It should be possible for the author or someone else that wants to continue the project to continue working on it after the termination of this master thesis. Information on possibilities for future work is detailed in section \ref{sec:x}. \note{Husk section}
+
+\subsection{Limitations}
+The game will be developed using Unreal Engine 4, so the project will be limited to use of the underlying architecture of that engine. The author has no previous experience with Unreal Engine, which presented challenges and opportunities to develop new skills. 
+
+
+\section{Unreal Architecture}
+The Unreal Engine uses a modular architecture where the engine is comprised of different modules for elements like networking, shaders, and physics. In a projects settings, the developer can define the different modules that are needed. When creating a game, the developer will mostly be working with the gameplay framework of the engine. The following sections describe the gameplay framework. The information presented is taken from the Unreal Engine's online documentation \cite{epicgames2016doc}
+
+\subsection{Players and Entities}
+All visual objects in the game world, like players, enemies, and items all share the base class Actor. An Actor is basically any object that can be placed into a level, they support basic 3D transformations, such as translation, rotation and scale. The Pawn class is the base class for all Actors that can be controlled by players or \gls{ai}, and are set up to easily accept input. Character is the class for representing a humanoid-style Pawn, which has a component for movement and collision detection.
+
+\subsection{Control and Input}
+There are two main ways of controlling a Pawn, by using a PlayerController or an AIController. Both classes share the base class Controller. The Controller is responsible for directing the Pawn which is referred to as possessing a Pawn. The PlayerController is the interface between the Pawn and the player, it handles the input from the player and issues commands to the Pawn. The AIController class responds to input from the game environment and uses \gls{ai} logic to command the Pawn.
+
+\subsection{Display}
+There is a HUD class which is the base class for displaying elements overlaid on the screen. Every PlayerController has an instance of the HUD class which draws their individual viewport. The Playercontroller also has an instance of a PlayerCameraManager class, which represents the view of the player.
+
+\subsection{Game Rules}
+The rules of the game are defined and implemented in a GameMode class. A game should implement functions or variables that set or enforce game rules in a subclass of the GameMode class. There can only be one game mode at any given time, and in the context of networking games, the GameMode will only be present on the server. GameState contains the state of the game, which can include the score, location of chess pieces in a chess game, or what tasks have been completed. There is also a class called PlayerState for keeping track of the state of a player in the game. Things like player name, experience level or score are data that would be present in the PlayerState.
+
+\subsection{Game Framework Overview}
+Figure \ref{fig:game_framework} shows how the gameplay classes interact with each other. The game is made up of a GameMode which sets and enforces the game rules and a GameState which describes the state of the game. Players are represented by PlayerControllers which can possess Pawns in order to control them. Pawns can also be controlled via an AIController that controls the Pawn using \gls{ai}. The PlayerController provides the player with input controls for controlling the pawn, a HUD for displaying an overlay on the screen, and a PlayerCameraManager for handling the players view in the game world.
+
+\hfigure{game_framework}{The relationship between the game framework classes}{1}
 \section{Views}
 %4+1 view model: etc.
+
 \section{Tactics}
 %modifiability
 %usability
-\section{Rationale}
-%Why different patterns and the resulting architecture was chosen
 
+\section{Summary}
+%Why different patterns and the resulting architecture was chosen
