@@ -1,12 +1,12 @@
-\documentclass[12pt, a4paper]{book}
-
+% !TeX root = report.tex
 % !TeX spellcheck = en_GB
 % !TeX program = xelatex
+
+\documentclass[12pt, a4paper]{book}
 \usepackage[english]{babel}
 %\usepackage[utf8]{inputenc}
 \usepackage{fontspec}
 \usepackage{titlesec}
-\usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{wrapfig}
@@ -23,6 +23,10 @@
 \usepackage{epigraph}
 \usepackage{rotating}
 \usepackage{tabularx}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{notoccite}
+\usepackage[toc, page]{appendix}
+\PassOptionsToPackage{hyphens}{url}\usepackage[hidelinks]{hyperref}
 
 \makeatletter
 \titleformat{\part}[display]
@@ -54,6 +58,7 @@
 \frontmatter
 \include{init/titlepage}
 \include{init/abstract}
+\include{init/abstract_norwegian}
 \include{init/preface}
 
 \tableofcontents
@@ -69,7 +74,7 @@
 \include{conclusion/part_conclusion}
 
 \appendix
-% Add appendices
+\include{appendices}
 
 \backmatter
 

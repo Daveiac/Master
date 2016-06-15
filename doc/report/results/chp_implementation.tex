@@ -1,9 +1,9 @@
 \chapter{Implementation}
 This chapter explains the development process of the game prototype, the testing that was done, and hindrances during development.
-\note{Hadde ver kjekt med litt feedback på dette kapitlet.}
 
 
 \section{Development Process}
+\label{sec:evolution}
 The development of the game prototype started on the 1st of February and ended on the 11th of May, the date of the play testing. The overall process for development was a weekly cycle, where at the end of each cycle there was a meeting with the advisor. The purpose of the meetings was to discuss the work done during that week, and plan the work for the next week. The meetings usually started with a test or showcase of the state of the game prototype, followed by a discussion on what elements had been implemented from the previous meeting and what new features that were to be implemented next. This development process is similar to Scrum or Extreme Programming, but there were no customer requirements, but rather a list of features to be implemented each week. During development the focus was on the features that were decided upon in the weekly meeting prior.
 
 The development can be split into four main phases which will be discussed in the following sections.
@@ -23,12 +23,42 @@ Up until the middle of April there were only a few basic testing levels without 
 \section{Testing}
 Testing was done throughout the development period by the author, and during the weekly meetings with the advisor. Unreal Engine made it easy to test the game from any point with their Play In Editor feature, which could be activated by the click of a button. Some test levels were created during development in order to test how the different gameplay elements interacted with the character and the hand.
 
-Some final testing was performed in order to confirm that the game prototype adhered to the requirements that was set.
-\note{Må gjøre ferdig requirementsa før jeg fullfører dette}
+Some final testing was performed in order to confirm that the game prototype adhered to the requirements that was set. The first four requirements, RQ1-RQ4, are met by the game prototype having support for two players that have separate controls. 
+\begin{description}
+	\setlength\itemsep{0em}
+	\item[RQ1] The game must support two players.
+	\item[RQ2] The two players must have different roles in the game
+	\item[RQ3] Player one will control a character that can interact with the game world
+	\item[RQ4] Player two will control a hand that can manipulate the game world
+\end{description}
+Requirements RQ5 and RQ6 has to do with the interaction devices that the game uses, RQ5 is met by using a gamepad, but RQ6 states that the game will use the PlayStation Move to control the hand, which it not true. The reason for this is detailed in section \ref{sec:dev_limitations}.
+\begin{description}
+	\setlength\itemsep{0em}
+	\item[RQ5] The character will be controlled by a gamepad
+	\item[RQ6] The hand will be controlled by the PlayStation Move
+\end{description}
+The final functional requirement, RQ7, is met by supporting multiple levels, which the game does.
+\begin{description}
+	\setlength\itemsep{0em}
+	\item[RQ7] The game must support multiple levels
+\end{description}
+The usability requirement are a bit more difficult to judge whether they have been met or not, but RQ8 and RQ9 are guaranteed to be met by the five levels designed for this prototype.
+\begin{description}
+	\setlength\itemsep{0em}
+	\item[RQ8] All levels should require both players involvement
+	\item[RQ9] All levels should be possible to complete	
+\end{description}
+The requirements RQ10 and RQ11 are strived for when designing the levels but it is hard to ensure equal engagement and challenging game obstacles, as this depends on the skills of the players.
+\begin{description}
+	\setlength\itemsep{0em}
+	\item[RQ10] The two players should be equally engaged
+	\item[RQ11] The game should have different challenging game obstacles
+\end{description}
+
 
 \section{Limitations and Obstacles}
 \label{sec:dev_limitations}
-The development period was pretty straightforward without many obstacles or limitations. One limiting factor was that there was only on person developing and testing the game, besides the weekly meetings with the advisor. This made it hard to judge the possible interactions between two different players when developing. Some level elements might be trivial to overcome with just one player, but more challenging with two players and vice versa. Being only one person also meant that it was hard to control two controllers at once, so most of the testing was done using a mouse and keyboard.
+The development period was pretty straightforward without many obstacles or limitations. One limiting factor was that there was only one person developing and testing the game, besides the weekly meetings with the advisor. This made it hard to judge the possible interactions between two different players when developing. Some level elements might be trivial to overcome with just one player, but more challenging with two players and vice versa. Being only one person also meant that it was hard to control two controllers at once, so most of the testing was done using a mouse and keyboard.
 
 Another obstacle was the creative aspect of developing a game. The levels and game elements had to be fun and challenging for both players, and the game was supposed to encourage social interaction and cooperation between the players. The weekly meeting with the advisor helped a lot with getting the game elements right by providing a second opinion and new ideas.
 

@@ -1,17 +1,20 @@
 \chapter{Game Development Technologies}
+\label{chp:technology}
 This chapter will take a look into what technologies are available for independent video game developers in order to create video games. The main topics include game engines, software tools like version control and programming languages, and game resources such as audio and graphics.
 
 
 \section{Game Engines}
-A game engine is a tool to help with the development of a video game. Game exist to abstract away complicated tasks that are common in video games, like physics simulation, visual rendering, graphical user interfaces, and input. By using a game engine, more time can be spent focusing on the gameplay and elements that make up the actual game, such as game design, story, and how different objects interact in the game world. This is especially useful for independent developers which may not have the resources or expertise to create all of the components for a video game from scratch. \cite{ward2008engine}
+A game engine is a tool to help with the development of a video game. Game exist to abstract away complicated tasks that are common in video games, like physics simulation, visual rendering, graphical user interfaces, and input. By using a game engine, more time can be spent focusing on the gameplay and elements that make up the actual game, such as game design, story, and how different objects interact in the game world. This is especially useful for independent developers which may not have the resources or expertise to create all of the components for a video game from scratch \cite{ward2008engine}.
 
-The benefit of using a game engine is that a lot of the hard work has already been done, usually by someone with expertise, and the game engine has been tried and tested before. However, using a game engine can also be limiting, in the fact that the developer does not have full control over how specific things are handled and has to rely on using the constructs of the game engine in order to achieve the desired outcome. Game engines can also homogenize games, by using the same game engines games often have a similar feel to them in terms of movement and physics interaction. \cite{enger2013engine}
+The benefit of using a game engine is that a lot of the hard work has already been done, usually by someone with expertise, and the game engine has been tried and tested before. However, using a game engine can also be limiting, in the fact that the developer does not have full control over how specific things are handled and has to rely on using the constructs of the game engine in order to achieve the desired outcome. Game engines can also homogenize games, by using the same game engines games often have a similar feel to them in terms of movement and physics interaction \cite{enger2013engine}.
 
 Two of the most popular game engines are Unreal Engine and Unity. Both of these engines have big communities and free entry into creating video games \cite{malik2016engine}. The two following sections will take a look into the features and limitations of these game engines.
 
 \subsection{Unreal Engine 4}
 %intro, most notable features + editor
-Unreal Engine 4 is a game engine created by Epic Games which is known for its powerful visual graphics engine. It supports dynamic lighting and shadows, photo realistic shaders, and has a particle system that can handle millions of particles at once. The built-in editor makes it easy to debug and test the game during development with features like Hot Reload and Instant Game Preview. Hot Reload makes it possible to update the game code while playing, and Instant Game Preview is an in-editor view of the game that can be launched to test or preview any part of the game.
+Unreal Engine 4 is a game engine created by Epic Games which is known for its powerful visual graphics engine. It supports dynamic lighting and shadows, photo realistic shaders, and has a particle system that can handle millions of particles at once. The built-in editor makes it easy to debug and test the game during development with features like Hot Reload and Instant Game Preview. Hot Reload makes it possible to update the game code while playing, and Instant Game Preview is an in-editor view of the game that can be launched to test or preview any part of the game. Figure \ref{fig:unreal} shows the standard view of the Unreal Engine 4 editor.
+
+\hfigure{unreal}{The Unreal Engine 4 editor interface}{1}
 
 %programming language and blueprints - special feature
 The programming language used when creating games for Unreal Engine 4 is C++, which the engine itself is created with, but it also supports visual scripting which is called Blueprints. Blueprints are meant to be easy to use by anyone, and is a way to create quick prototypes and build playable content without writing code. The full C++ source code for the engine is also made available, which enables customization of the Unreal Engine subsystems, including physics, networking, and the editor itself.
@@ -21,7 +24,9 @@ Other notable features of the Unreal Enigne 4 include Artificial Intelligence im
 
 
 \subsection{Unity3d 5}
-Unity3d 5, created by Unity Technologies, focuses on being an easy to use, but powerful game engine. It has support for multiple platforms including desktops, consoles and mobile platforms. Unity has a strong community and is popular among independent developers, especially for creating mobile games. Unity was the world's leading engine for developing mobile games in 2012 \cite{bratcher2013unity}.
+Unity3d 5, created by Unity Technologies, focuses on being an easy to use, but powerful game engine. It has support for multiple platforms including desktops, consoles and mobile platforms. Unity has a strong community and is popular among independent developers, especially for creating mobile games. Unity was the world's leading engine for developing mobile games in 2012 \cite{bratcher2013unity}. A view of the Unity3D 5 interface is illustrated in Figure \ref{fig:unity}.
+
+\hfigure{unity}{The Unity3D 5 editor interface}{1}
 
 The Unity editor is made to be extendible tool, and has its own store with over 1 700 free and paid extensions to enhance the editor. These extensions consist of game assets like textures and audio, starter projects, particle systems, and shaders. The editor has a Play Mode, that supports rapid interactive editing, with pausing and frame by frame stepping for easy debugging. Games can also be viewed from the perspective of specific platforms in order to easily test and develop for different platforms simultaneously. In terms of programming languages, Unity supports C\# and UnityScript. UnityScript is a custom language specific for unity and is based on JavaScript. \cite{unity2016editor, unity2016script}
 
@@ -41,7 +46,7 @@ In addition to game engines, there are other tools and resources needed in order
 \subsection{Software Tools}
 Other than game engines, important software tools include Integrated Development Environments (IDE), version control systems, and project management software. The IDE and programming language used is usually dependent on the game engine chosen. An IDE is a tool for writing source code for the game and normally contain a compiler and a debugger. IDEs are meant to assist the developer in writing code and increasing productivity by providing easy management and editing of the code base for the game.
 
-Another important software tool is version control. A version control system records changes to files, in order to recall different versions of the files later. It enables useful features like reverting files to a previous state, reverting the whole project to a previous state, and comparing changes over time. It is also useful if the code somehow gets lost or broken. \cite{git2016vcs}
+Another important software tool is version control. A version control system records changes to files, in order to recall different versions of the files later. It enables useful features like reverting files to a previous state, reverting the whole project to a previous state, and comparing changes over time. It is also useful if the code somehow gets lost or broken \cite{git2016vcs}.
 
 \subsection{Graphics and Audio}
 Graphics and audio, referred to as game assets, are important for the look and feel of a video game and is a central part in creating immersion. Graphics is considered anything visual from 3D textures and models to 2D pixel sprites and backgrounds. Audio is background music as well as sound effects of the game. Getting game assets for a game is usually done in three ways: creating game assets using software, hiring a graphical or sound designer to do it, or acquire pre-made free or paid game assets. The method for acquiring game assets is dependent on the game developers' expertise and resources.
@@ -52,4 +57,9 @@ The distribution of a video game can be done in different ways, this section onl
 Distribution can also be done via a digital store, like Steam, GOG, or Humble Store. The main advantage of using a store is that it provides marketing and is a way for players to discover new games.
 
 \section{Summary}
-\note{Write summary!}
+Game development technologies have come a long way to support independent developers. Feature rich game engines like Unity3d 5 and Unreal Engine 4 are available for anyone, and are used by both independent developers and big game companies. There are even game engines which specializes in different genres, and game engines which cater to people with various programming experience.
+
+Game resources is also an important aspect to the development of video games. Software tools like version control systems are freely available for anyone to use and help keeping track of changes over time. Game assets can be acquired through paid or free channels on the internet, and there are online resources for hiring designers. Digital distribution makes it easy for an independent developer to publish their game online either via payment processors or via online game stores like Steam.
+
+Game engines seem to be useful when creating video games, and and engine like Unity3D or Unreal Engine 4 would be helful for creating the game prototype. Access to free game assets can give life to the game prototype, and a version control system would be helpful in order to provide a backup and to keep track of the changes in the game.
+\note{er dette greit?}

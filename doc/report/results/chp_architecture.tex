@@ -1,9 +1,9 @@
 \chapter{Architecture}
 This chapter describes the software architecture of the game prototype. It contains architectural drivers, patterns, views and tactics.
-\note{trenger litt feedback på dette kaptilet}
 
+\section{Architectural Drivers}
+This section will describe the motivation behind the architecture, the expected life time of the game prototype, and limitations for the implementation.
 
-\section{Drivers}
 \subsection{Motivation}
 The game prototype would be played by children, so the game controls and gameplay had to be easy to understand. The author also wants the game to be easy to develop for, so the game had to be easy to modify and add new features. This set the focus for the quality attributes usability and modifiability. With high usability it should be easy for the children to enjoy the game without being frustrated by the controls or gameplay elements. Focusing on modifiability it should be easy for the developer to add new features, like enemies, items, and levels.
 
@@ -32,11 +32,13 @@ The rules of the game are defined and implemented in a GameMode class. A game sh
 \subsection{Game Framework Overview}
 Figure \ref{fig:game_framework} shows how the gameplay classes interact with each other. The game is made up of a GameMode which sets and enforces the game rules and a GameState which describes the state of the game. Players are represented by PlayerControllers which can possess Pawns in order to control them. Pawns can also be controlled via an AIController that controls the Pawn using \gls{ai}. The PlayerController provides the player with input controls for controlling the pawn, a HUD for displaying an overlay on the screen, and a PlayerCameraManager for handling the players view in the game world.
 
-\hfigure{game_framework}{The relationship between the game framework classes}{1}
+\hfigure{game_framework}{The relationship between the game framework classes \cite{epicgames2016framework}}{1}
 
 
 \section{Game Architecture and Views}
-The architecture for the game is based on the Unreal Engines architecture and uses C++ classes and Blueprints. All classes and Blueprints inherit from a class in the Unreal Engine framework. Figure \ref{fig:class_diagram_full} shows the inheritance between classes and illustrates how the games architecture is linked with the architecture of Unreal Engine. The classes are organized into directories which form different groups of classes. The following sections will explain these groups in greater detail. The folder structure is illustrated in Figure \ref{fig:x} \note{Lag figur.}
+The architecture for the game is based on the Unreal Engines architecture and uses C++ classes and Blueprints. All classes and Blueprints inherit from a class in the Unreal Engine framework. Figure \ref{fig:class_diagram_full} shows the inheritance between classes and illustrates how the games architecture is linked with the architecture of Unreal Engine. The classes are organized into directories which form different groups of classes. The following sections will explain these groups in greater detail. The folder structure of the C++ game source is illustrated in Figure \ref{fig:package_diagram_source}
+
+\hfigure{package_diagram_source}{The folder structure of the source files}{0.7}
 
 \begin{sidewaysfigure}[!ht]
 	\includegraphics[width=\textwidth]{images/class_diagram_full}
@@ -45,13 +47,13 @@ The architecture for the game is based on the Unreal Engines architecture and us
 \end{sidewaysfigure}
 
 \subsection{World Objects}
-The world objects are static objects that exist in the game world that the character or the hand can interact with. The classes that are grouped as world objects are Coin, Goal, MovingPlatform, Spikes, SpringBoard, KillVolume, Switch, ColorSwitch and ColorBox. Most of these represent gameplay elements that are explained in section \ref{sec:x}. KillVolume is a trigger to kill the character when it moves out of bounds of the game world. Goal is the goal that the character has to reach in order to complete the level. ColorSwitch inherits from Switch in order to reuse functionality. The difference between the two types of switches is that the regular Switch controls one or more MovingPlatforms and the colour switches control the existence of coloured blocks.
+The world objects are static objects that exist in the game world that the character or the hand can interact with. The classes that are grouped as world objects are Coin, Goal, MovingPlatform, Spikes, SpringBoard, KillVolume, Switch, ColorSwitch and ColorBox. Most of these represent gameplay elements that are explained in section \ref{sec:gameplay_elements}. KillVolume is a trigger to kill the character when it moves out of bounds of the game world. Goal is the goal that the character has to reach in order to complete the level. ColorSwitch inherits from Switch in order to reuse functionality. The difference between the two types of switches is that the regular Switch controls one or more MovingPlatforms and the colour switches control the existence of coloured blocks.
 
 \subsection{Items}
 Items represent the items that the character can pick up and add to the inventory. There are currently only two classes of items: the Item class and the Bait class. The Item class is made in such a way that it is easy to subclass it and alter the functionality of a new type of item. The Bait class does this and only alters two functions from the Item class.
 
 \subsection{Game}
-The game category only consist of the MainGameMode class. Becase the game prototype doesn't have very complex rules or game states, and there is no need for networking, the functionality in the MainGameMode includes functionality that normally belongs in the GameState. For the same reasons, there are also no PlayerStates. The MainGameMode handles the display of the HUD, keeps track of the score and inventory, and what item is currently grabbed by the hand.
+The game category only consist of the MainGameMode class. Becase the game prototype does not have very complex rules or game states, and there is no need for networking, the functionality in the MainGameMode includes functionality that normally belongs in the GameState. For the same reasons, there are also no PlayerStates. The MainGameMode handles the display of the HUD, keeps track of the score and inventory, and what item is currently grabbed by the hand.
 
 \subsection{Characters}
 The characters are the classes that move around in the game world and consist of the MainCharacter, Hand, and Enemy classes. These classes are sub-classes of PaperCharacter which is a specialization of the Character, found in the Paper2D plugin. Normally non-human controlled pawns are not Characters, but the enemies share similar movement and collision detection of the player, so they were made into characters.
@@ -64,5 +66,5 @@ The blueprints were used in such a way that they only changed a few attributes o
 %usability
 
 \section{Summary}
-%Why different patterns and the resulting architecture was chosen
-\note{Write summary}
+The motivation for the architecture is to focus on high usability and modifiability. Usability is achieved in part by using the Unreal Engine to handle controller input, physics, collision and rendering which makes for a smooth gameplay experience. The other part of usability is to make sure that the gameplay elements implemented are fun, yet challenging. Modifiability is ensured by making the gameplay elements easily extendible through C++ classes of Blueprints. The Unreal Engine's gameplay framework also promotes modifiability by using a modular system that increases cohesion.
+\note{Er det noe mer som burde stått her?}
