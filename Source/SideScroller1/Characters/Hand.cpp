@@ -91,12 +91,18 @@ void AHand::Tick( float DeltaTime )
 
 	// Move the hand according to the current position determined by player input + camera
 	SetActorLocation(FVector(newX, 1.0f, newZ));
+
+	// Make the mouse follow the hand.
 	APlayerController *Controller = UGameplayStatics::GetPlayerController(this, 0);
 	FViewport *Viewport = Controller->GetLocalPlayer()->ViewportClient->Viewport;
-	FVector2D ScreenLocation;
-	Controller->ProjectWorldLocationToScreen(GetActorLocation(), ScreenLocation);
-	Viewport->SetMouse(ScreenLocation.X, ScreenLocation.Y);
+	if (Viewport && Viewport->IsForegroundWindow())
+	{
+		FVector2D ScreenLocation;
+		Controller->ProjectWorldLocationToScreen(GetActorLocation(), ScreenLocation);
+		Viewport->SetMouse(ScreenLocation.X, ScreenLocation.Y);
+	}
 
+	// Detect when items are grabbed and released in order to change the sprite
 	if (GrabbedItem)
 	{
 		if (GrabbedItem->bIsGrabbed && SpriteComponent->GetSprite() != GrabSprite)
