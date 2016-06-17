@@ -4,33 +4,36 @@ This chapter covers the design of the video game prototype that was created. It 
 
 \section{Chosen Technologies}
 \label{sec:chosen_tech}
-\note{Nytt delkapittel}
 This section describes the technologies that were chosen for the development of the game prototype.
 
 \subsection{Interaction Devices}
-The game will use a PlayStation Move motion controller and a gamepad to control the characters in the game. These interaction devices were chosen with the game concept in mind, more in section \ref{sec:concept_final}, and supports a design where the players have different roles and will create a unique dynamic between the players. PlayStation Move controller will control the hand that can manipulate the game world, this controller is suitable for representing the players hand with precision and provides buttons for manipulating the environment. The gamepad will control the character that can interact with the game world, and provides a familiar interaction device for a platformer game. The players will have entirely different functions in the game and must use these functions to work together. The PlayStation Move was also chosen to se how a proprietary game controller for a console can be used in a PC game.
+The game will use a PlayStation Move motion controller and a gamepad to control the characters in the game. These interaction devices were chosen with the game concept in mind, more in Section \ref{sec:concept_final}, and supports a design where the players have different roles and will create a unique dynamic between the players. PlayStation Move controller will control the hand that can manipulate the game world, this controller is suitable for representing the players hand with precision and provides buttons for manipulating the environment. The gamepad will control the character that can interact with the game world, and provides a familiar interaction device for a platformer game. The players will have entirely different functions in the game and must use these functions to work together. The PlayStation Move was also chosen to see how a proprietary game controller for a console can be used in a PC game.
 
 \subsection{Game Engine}
 The game will be developed using the Unreal Engine 4 as the game engine. This ease the development by handling common video game tasks such as rendering, collision, and physics. Unreal Engine 4 has a plugin called Paper2D which helps in the creation of 2D games. There is also an unofficial plugin for the PlayStation Move controller to make it easy to use with games developed in Unreal Engine 4. Unreal Engine 4 is a popular game engine with a big community and good documentation online. It also uses C++ as a programming language that the author is familiar with, which is one of the main reasons that it was chosen over Unity3D 5 that has similar features to Unreal Engine 4.
 
 \subsection{Software Tools}
-Microsoft's Visual Studio will be used as the IDE for the development, as it is the default IDE for Unreal Engine 4. The project will also use Git as version control, arguably the most popular version control systems today. A version control system will help keep a track of the changes throughout the development, and serve as a safety net in case the files get lost or corrupted locally.
+Microsoft's Visual Studio 2015 will be used as the \gls{ide} for the development, as it is the default \gls{ide} for Unreal Engine 4. The project will also use Git as version control, arguably the most popular version control systems today. A version control system will help keep a track of the changes throughout the development, and serve as a safety net in case the files get lost or corrupted locally.
 
 \subsection{Game Assets}
 The game prototype will use free online game resources for graphics and audio. This is chosen to see if a game can be created using free resources, and because the game is supposed to be a prototype with limited monetary resources. The graphics used in the game prototype are created by Kenny Land \cite{kenney2016platformer} and are provided with a Creative Commons CC0 1.0 licence, which means that they are free to use for personal and commercial projects. The background music for the prototype is by TomCat Carty \cite{carty2015space} and is provided as freeware. Most of the sound effects come from Sonnis.com's Game Audio Bundle \cite{sonnis2016audio}, and some from JewelBeat.com \cite{jewelbeat2016audio}, both of which allow for use in personal or commercial products for free.
+
+\subsection{Summary}
+The game prototype will use a gamepad and the PlayStation Move controller to control the game. The game prototype will use the Unreal Engine 4 as the game engine for development. In addition to this, Microsoft Visual Studio 2015 will be used along with Git to aid with the programming, managing of the source code, and will keep a history and online backup of the source code. The game's graphics and audio will come from free online assets.
+
 
 \section{Game Concept}
 The main motivation behind the game concept is to have two players working together using two different controllers to navigate through various challenges. This is meant to stimulate collaboration between players.
 
 \subsection{Initial Concept}
-The initial concept of the game was created in the specialization project with the idea of an action platformer with two players that have different roles. Player one controls a game character using a traditional gamepad, while player two controls the game world using a motion control device. The players have to cooperate and help each other to progress through the game and complete the different levels of the game. Figure \ref{fig:original_concept} shows the original game concept with one player using a gamepad to control a character and the other player using hand gestures.
+The initial concept of the game was created in the specialization project with the idea of an action platformer with two players that have different roles \cite{hovind2015alternative}. Player one controls a game character using a traditional gamepad, while player two controls the game world using a motion control device. The players have to cooperate and help each other to progress through the game and complete the different levels of the game. Figure \ref{fig:original_concept} shows the original game concept with one player using a gamepad to control a character and the other player using hand gestures.
 
 \hfigure{original_concept}{Early concept sketch: One player lowers a bridge using hand gestures to help the other player cross the water}{1}
 
 
 \subsection{Final Prototype}
 \label{sec:concept_final}
-The core concept of the game is cooperation; neither of the players should be able to complete a level without the cooperation of the other player. Both players should be equally engaged, but have different roles and tasks during the game. The original concept experienced an evolution throughout the development period, detailed in section \ref{sec:evolution}, and the final concept of the game prototype took shape. 
+The core concept of the game is cooperation; neither of the players should be able to complete a level without the cooperation of the other player. Both players should be equally engaged, but have different roles and tasks during the game. The original concept experienced an evolution throughout the development period, detailed in Section \ref{sec:evolution}, and the final concept of the game prototype took shape. 
 
 The game is a puzzle platformer that has different levels where the players have to cooperate to reach the goal. Player one has to reach the goal of each level, but cannot do so because there are obstacles in the way that can only be manipulated by player two. In order to unlock the goal the character needs to collect a certain number of coins on that level. To be able to reach some places, player two needs to place blocks that the character can stand on, creating bridges and towers. There are enemies in the game that will chase the character and hurt them, but the players cannot hurt the enemies. The player controlling the hand can lure enemies away by using bait, allowing the player to access areas guarded by enemies. Player two can also activate switches that can control moving platforms, or make coloured boxes appear and disappear. Figure \ref{fig:level1} shows a part of the first level where the hand must activate coloured switches in order to remove the corresponding coloured boxes that block the players movement.
 
@@ -39,13 +42,8 @@ The game prototype has a total of five levels with varying degrees of difficulty
 \hfigure{level1}{A puzzle with coloured switches that control the existence of corresponding boxes}{1}
 
 
-
-
 \section{Requirements}
-Because the game prototype is a creative initiative, there were no pre determined requirements. The requirements presented here are meant to make sure that the prototype adheres to the core concepts of the game and allows for interesting gameplay that encourages social interaction and stimulates collaboration between players. Table \ref{tab:requirements} contains a list of the requirements for the game prototype. 
-\note{La til litt mer requirements}
-
-
+Because the game prototype is a creative initiative, there were no pre determined requirements. The requirements presented here are meant to make sure that the prototype adheres to the core concepts of the game and allows for interesting gameplay that encourages social interaction and stimulates collaboration between players. Table \ref{tab:requirements} contains a list of the requirements for the game prototype. These requirements will be helpful when creating and testing the prototype to ensure that they are met.
 
 \begin{table}[!ht]
 	\centering
@@ -53,19 +51,22 @@ Because the game prototype is a creative initiative, there were no pre determine
 	\label{tab:requirements}
 	\begin{tabular}{|l|l|}
 		\hline
-		\textbf{ID} & \textbf{Description}                                  \\ \hline
-					& \textbf{Functional requirements}                      \\ \hline
-		RQ1         & The game must support two players                     \\
-		RQ2         & The two players must have different roles in the game \\
-		RQ3         & Player one will control a character that can interact with the game world \\
-		RQ4         & Player two will control a hand that can manipulate the game world \\
-		RQ5         & The character will be controlled by a gamepad         \\				RQ6         & The hand will be controlled by the PlayStation Move   \\
-		RQ7         & The game must support multiple levels                 \\ \hline
-					& \textbf{Usability requirements}                       \\ \hline
-		RQ8         & All levels should require both players involvement    \\
-		RQ9         & The two players should be equally engaged             \\
-		RQ10        & The game should have different challenging game obstacles \\
-		RQ11        & All levels should be possible to complete             \\ \hline
+		\textbf{ID} & \textbf{Description}                                                  \\ \hline
+		            & \textbf{Functional requirements}                                      \\ \hline
+		RQ1         & The game must support two players                                     \\
+		RQ2         & The two players must have different roles in the game                 \\
+		RQ3         & Player one controls a character that can interact with the game world \\
+		RQ4         & Player two contols a hand that can manipulate the game world          \\
+		RQ5         & The character will be controlled by a gamepad                         \\
+		RQ6         & The hand will be controlled by the PlayStation Move                   \\
+		RQ7         & The game must support multiple levels                                 \\
+		RQ8         & All levels must have a visible goal that leads to the next level      \\
+		RQ9         & The player must collect coins in order to unlock the goal             \\ \hline
+		            & \textbf{Usability requirements}                                       \\ \hline
+		RQ10        & All levels should require both players involvement                    \\
+		RQ11        & The two players should be equally engaged                             \\
+		RQ12        & The game should have different challenging game obstacles             \\
+		RQ13        & All levels should be possible to complete                             \\ \hline
 	\end{tabular}
 \end{table}
 

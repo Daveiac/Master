@@ -15,7 +15,7 @@ The game will be developed using Unreal Engine 4, so the project will be limited
 
 
 \section{Unreal Architecture}
-The Unreal Engine uses a modular architecture where the engine is comprised of different modules for elements like networking, shaders, and physics. In a projects settings, the developer can define the different modules that are needed. When creating a game, the developer will mostly be working with the gameplay framework of the engine. The following sections describe the gameplay framework. The information presented is taken from the Unreal Engine's online documentation \cite{epicgames2016doc}
+The Unreal Engine uses a modular architecture where the engine is comprised of different modules for elements like networking, shaders, and physics. In a projects settings, the developer can define the different modules that are needed. When creating a game, the developer will mostly be working with the gameplay framework of the engine. The following sections describe the gameplay framework. The information presented is taken from the Unreal Engine's online documentation \cite{epicgames2016doc}.
 
 \subsection{Players and Entities}
 All visual objects in the game world, like players, enemies, and items all share the base class Actor. An Actor is basically any object that can be placed into a level, they support basic 3D transformations, such as translation, rotation and scale. The Pawn class is the base class for all Actors that can be controlled by players or \gls{ai}, and are set up to easily accept input. Character is the class for representing a humanoid-style Pawn, which has a component for movement and collision detection.
@@ -36,7 +36,7 @@ Figure \ref{fig:game_framework} shows how the gameplay classes interact with eac
 
 
 \section{Game Architecture and Views}
-The architecture for the game is based on the Unreal Engines architecture and uses C++ classes and Blueprints. All classes and Blueprints inherit from a class in the Unreal Engine framework. Figure \ref{fig:class_diagram_full} shows the inheritance between classes and illustrates how the games architecture is linked with the architecture of Unreal Engine. The classes are organized into directories which form different groups of classes. The following sections will explain these groups in greater detail. The folder structure of the C++ game source is illustrated in Figure \ref{fig:package_diagram_source}
+The architecture for the game is based on the Unreal Engines architecture and uses C++ classes and Blueprints. All classes and Blueprints inherit from a class in the Unreal Engine framework. Figure \ref{fig:class_diagram_full} shows the inheritance between classes and illustrates how the games architecture is linked with the architecture of Unreal Engine. The classes are organized into directories which form different groups of classes. The following sections will explain these groups in greater detail. The folder structure of the C++ game source is illustrated in Figure \ref{fig:package_diagram_source}.
 
 \hfigure{package_diagram_source}{The folder structure of the source files}{0.7}
 
@@ -47,7 +47,7 @@ The architecture for the game is based on the Unreal Engines architecture and us
 \end{sidewaysfigure}
 
 \subsection{World Objects}
-The world objects are static objects that exist in the game world that the character or the hand can interact with. The classes that are grouped as world objects are Coin, Goal, MovingPlatform, Spikes, SpringBoard, KillVolume, Switch, ColorSwitch and ColorBox. Most of these represent gameplay elements that are explained in section \ref{sec:gameplay_elements}. KillVolume is a trigger to kill the character when it moves out of bounds of the game world. Goal is the goal that the character has to reach in order to complete the level. ColorSwitch inherits from Switch in order to reuse functionality. The difference between the two types of switches is that the regular Switch controls one or more MovingPlatforms and the colour switches control the existence of coloured blocks.
+The world objects are static objects that exist in the game world that the character or the hand can interact with. The classes that are grouped as world objects are Coin, Goal, MovingPlatform, Spikes, SpringBoard, KillVolume, Switch, ColorSwitch and ColorBox. Most of these represent gameplay elements that are explained in Section \ref{sec:gameplay_elements}. KillVolume is a trigger to kill the character when it moves out of bounds of the game world. Goal is the goal that the character has to reach in order to complete the level. ColorSwitch inherits from Switch in order to reuse functionality. The difference between the two types of switches is that the regular Switch controls one or more MovingPlatforms and the colour switches control the existence of coloured blocks.
 
 \subsection{Items}
 Items represent the items that the character can pick up and add to the inventory. There are currently only two classes of items: the Item class and the Bait class. The Item class is made in such a way that it is easy to subclass it and alter the functionality of a new type of item. The Bait class does this and only alters two functions from the Item class.
@@ -67,4 +67,3 @@ The blueprints were used in such a way that they only changed a few attributes o
 
 \section{Summary}
 The motivation for the architecture is to focus on high usability and modifiability. Usability is achieved in part by using the Unreal Engine to handle controller input, physics, collision and rendering which makes for a smooth gameplay experience. The other part of usability is to make sure that the gameplay elements implemented are fun, yet challenging. Modifiability is ensured by making the gameplay elements easily extendible through C++ classes of Blueprints. The Unreal Engine's gameplay framework also promotes modifiability by using a modular system that increases cohesion.
-\note{Er det noe mer som burde stått her?}

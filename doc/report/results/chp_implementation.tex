@@ -21,40 +21,37 @@ With most of the gameplay elements implemented it was time to get the game ready
 Up until the middle of April there were only a few basic testing levels without much dynamic interaction between the players. The last phase started around the last two weeks of April and ended at the 11th of May with the play testing. The main purpose of this phase was to get the game to a playable condition with some interesting levels. The five main levels of the game prototype was designed in this phase, three smaller introductory levels, and two larger more challenging levels. A lot of time went into getting the PlayStation Move controller to work with the game, but it was abandoned due to not working satisfactory. Due to this the keyboard and mouse that had been used for internal testing was replaced with a gamepad for each player. The controls were basic with only one movement joystick and one action button for each player. More information about why the Move controller was abandoned can be found in Section \ref{sec:dev_limitations}, along with some other problems and limitations.
 
 \section{Testing}
-Testing was done throughout the development period by the author, and during the weekly meetings with the advisor. Unreal Engine made it easy to test the game from any point with their Play In Editor feature, which could be activated by the click of a button. Some test levels were created during development in order to test how the different gameplay elements interacted with the character and the hand.
+Testing was done throughout the development period by the author, and during the weekly meetings with the advisor. Unreal Engine made it easy to test the game from any point with their Play In Editor feature, which could be activated by the click of a button. Some test levels were created during development in order to test how the different gameplay elements interacted with the character and the hand. Some final testing was performed in order to confirm that the game prototype adhered to the requirements that was set. The results of this testing and what requirements are met by the game prototype, can be seen in Table \ref{tab:requirements_met}. 
 
-Some final testing was performed in order to confirm that the game prototype adhered to the requirements that was set. The first four requirements, RQ1-RQ4, are met by the game prototype having support for two players that have separate controls. 
-\begin{description}
-	\setlength\itemsep{0em}
-	\item[RQ1] The game must support two players.
-	\item[RQ2] The two players must have different roles in the game
-	\item[RQ3] Player one will control a character that can interact with the game world
-	\item[RQ4] Player two will control a hand that can manipulate the game world
-\end{description}
-Requirements RQ5 and RQ6 has to do with the interaction devices that the game uses, RQ5 is met by using a gamepad, but RQ6 states that the game will use the PlayStation Move to control the hand, which it not true. The reason for this is detailed in section \ref{sec:dev_limitations}.
-\begin{description}
-	\setlength\itemsep{0em}
-	\item[RQ5] The character will be controlled by a gamepad
-	\item[RQ6] The hand will be controlled by the PlayStation Move
-\end{description}
-The final functional requirement, RQ7, is met by supporting multiple levels, which the game does.
-\begin{description}
-	\setlength\itemsep{0em}
-	\item[RQ7] The game must support multiple levels
-\end{description}
-The usability requirement are a bit more difficult to judge whether they have been met or not, but RQ8 and RQ9 are guaranteed to be met by the five levels designed for this prototype.
-\begin{description}
-	\setlength\itemsep{0em}
-	\item[RQ8] All levels should require both players involvement
-	\item[RQ9] All levels should be possible to complete	
-\end{description}
-The requirements RQ10 and RQ11 are strived for when designing the levels but it is hard to ensure equal engagement and challenging game obstacles, as this depends on the skills of the players.
-\begin{description}
-	\setlength\itemsep{0em}
-	\item[RQ10] The two players should be equally engaged
-	\item[RQ11] The game should have different challenging game obstacles
-\end{description}
+The first four requirements, RQ1-RQ4, are met by the game prototype having support for two players that have separate controls.Requirements RQ5 and RQ6 has to do with the interaction devices that the game uses, RQ5 is met by using a gamepad, but RQ6 states that the game will use the PlayStation Move to control the hand, which it not true. The reason for this is detailed in section \ref{sec:dev_limitations}. Requirement RQ7, is met by supporting multiple levels, which the game does by using Unreal Engine's UWorlds. The requirements RQ8 and RQ9 are met by ensuring that all the levels have a goal, visualised by a flag, that can be unlocked by collecting a certain number of coins (adjustable per level).
 
+The usability requirement are a bit more difficult to judge whether they have been met or not, but RQ10 and RQ11 are guaranteed to be met by the five levels designed for this prototype. The requirements RQ12 and RQ13 are strived for when designing the levels but it is hard to ensure equal engagement and challenging game obstacles, as this depends on the skills of the players.
+
+
+\begin{table}[!ht]
+	\centering
+	\caption{Results of the testing to see if the requirements were met}
+	\label{tab:requirements_met}
+	\begin{tabularx}{\textwidth}{|l|X|l|}
+		\hline
+		\textbf{ID} & \textbf{Description}                                                  & \textbf{Met} \\ \hline
+		            & \textbf{Functional requirements}                                      &  \\ \hline
+		RQ1         & The game must support two players                                     & Yes          \\
+		RQ2         & The two players must have different roles in the game                 & Yes          \\
+		RQ3         & Player one controls a character that can interact with the game world & Yes          \\
+		RQ4         & Player two contols a hand that can manipulate the game world          & Yes          \\
+		RQ5         & The character will be controlled by a gamepad                         & Yes          \\
+		RQ6         & The hand will be controlled by a PlayStation Move controller          & No           \\
+		RQ7         & The game must support multiple levels                                 & Yes          \\
+		RQ8         & All levels must have a visible goal that leads to the next level      & Yes          \\
+		RQ9         & The player must collect coins in order to unlock the goal             & Yes          \\ \hline
+		            & \textbf{Usability requirements}                                       &  \\ \hline
+		RQ10        & All levels should require both players involvement                    & Yes          \\
+		RQ11        & The two players should be equally engaged                             & Yes          \\
+		RQ12        & The game should have different challenging game obstacles             & Yes          \\
+		RQ13        & All levels should be possible to complete                             & Yes          \\ \hline
+	\end{tabularx}
+\end{table}
 
 \section{Limitations and Obstacles}
 \label{sec:dev_limitations}
@@ -62,7 +59,7 @@ The development period was pretty straightforward without many obstacles or limi
 
 Another obstacle was the creative aspect of developing a game. The levels and game elements had to be fun and challenging for both players, and the game was supposed to encourage social interaction and cooperation between the players. The weekly meeting with the advisor helped a lot with getting the game elements right by providing a second opinion and new ideas.
 
-The game prototype was originally going to use the PlayStation Move controller for controlling the hand by the second player, but was later abandoned for not functioning properly. The Move had been originally tested to work with Unreal Engine during the first week of the project, so it was not seen as a major problem to implement later in the development. When the time come to get the Move controller integrated into the game some problems occurred. The plugin that was used to interface with the Move only provided a simple example to control an object on the screen. In order to get the satisfactory behaviour of the move controller in the game, access to the raw data from the camera tracker was needed in order to determine the position of the controller. This was impossibe to do with this plugin without the use of a virtual reality headset, because the plugin was integrated with th \gls{vr} part of Unreal Engine. The creator of the plugin was contacted in order to try to solve this problem, but the creator had discontinued support of the plugin in order to create a new system that was independent of Unreal Engine. After much trial and error, the Move controller was eventually abandoned in favor of using a gamepad for controlling the hand.
+The game prototype was originally going to use the PlayStation Move controller for controlling the hand by the second player, but was later abandoned for not functioning properly. The Move had been originally tested to work with Unreal Engine during the first week of the project, so it was not seen as a major problem to implement later in the development. When the time come to get the Move controller integrated into the game some problems occurred. The plugin that was used to interface with the Move only provided a simple example to control an object on the screen. In order to get the satisfactory behaviour of the move controller in the game, access to the raw data from the camera tracker was needed in order to determine the position of the controller. This was impossible to do with this plugin without the use of a virtual reality headset, because the plugin was integrated with the \gls{vr} part of Unreal Engine. The creator of the plugin was contacted in order to try to solve this problem, but the creator had discontinued support of the plugin in order to create a new system that was independent of Unreal Engine. After much trial and error, the Move controller was eventually abandoned in favour of using a gamepad for controlling the hand.
 
 \section{Summary}
 The development of the game prototype was an exciting and challenging experience. The weekly cycle of development worked well, and helped set intermediate goals throughout the development period. The Unreal Engine was very helpful, but took some getting used to in the beginning. Being a single developer creating a two-player game presented some challenges, but weekly meetings with the advisor helped combat those challenges. Even though the final prototype did not use the Move controller as planned, the play testing was still a success, and having similar controllers might even have helped the cooperation between the players. The game prototype was ready with five playable levels on the day of the play testing, which is documented in Chapter \ref{chp:play_test}.

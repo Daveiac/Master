@@ -1,31 +1,32 @@
-ID,Question
-,Concentration
-Q1,I am concentrated when playing the game
-,Goal Clarity
-Q2,It was easy to understand the goal of the game
-,Feedback
-Q3,It is easy to understand when I do something wrong in the game
-Q4,It is easy to understand when I do something good in the game
-Q5,I liked the graphics of the game
-Q6,I liked the sounds of the game
-,Challenge
-Q7,I get bored when playing the game
-Q8,The game was too easy
-Q9,The game was adequately difficult
-Q10,The game was too hard
-Q11,My skill gradually improved when playing the game
-,Autonomy
-Q12,I felt in control of the movements of the player
-Q13,I could recover from errors I made in the game
-,Immersion
-Q14,Time goes by fast when plaing the game
-Q15,I become unaware of my surroundings when playing the game
-,Social Interaction
-Q16,I was competing with others to reach the furthest
-Q17,It was important to communicate when playing the game
-Q18,It was important to cooperate when playing the game
-Q19,I cooperated well with the other player
-Q20,The other player cooperated well with me
-,Game Enjoyment
-Q21,I enjoyed playing the game
-Q22,I would like to play this game at home
+,,,
+ID,Question,Disagree,Agree
+,Concentration,,
+Q1,I am concentrated when playing the game,"0,00%","100,00%"
+,Goal Clarity,,
+Q2,It was easy to understand the goal of the game,"47,37%","52,63%"
+,Feedback,,
+Q3,It is easy to understand when I do something wrong in the game,"21,05%","78,95%"
+Q4,It is easy to understand when I do something good in the game,"10,53%","89,47%"
+Q5,I liked the graphics of the game,"0,00%","100,00%"
+Q6,I liked the sounds of the game,"21,05%","78,95%"
+,Challenge,,
+Q7,I get bored when playing the game,"89,47%","10,53%"
+Q8,The game was too easy,"84,21%","15,79%"
+Q9,The game was adequately difficult,"42,11%","57,89%"
+Q10,The game was too hard,"63,16%","36,84%"
+Q11,My skill gradually improved when playing the game,"10,53%","89,47%"
+,Autonomy,,
+Q12,I felt in control of the movements of the player,"31,58%","68,42%"
+Q13,I could recover from errors I made in the game,"31,58%","68,42%"
+,Immersion,,
+Q14,Time goes by fast when plaing the game,"15,79%","84,21%"
+Q15,I become unaware of my surroundings when playing the game,"10,53%","89,47%"
+,Social Interaction,,
+Q16,I was competing with others to reach the furthest,"68,42%","31,58%"
+Q17,It was important to communicate when playing the game,"0,00%","100,00%"
+Q18,It was important to cooperate when playing the game,"0,00%","100,00%"
+Q19,I cooperated well with the other player,"10,53%","89,47%"
+Q20,The other player cooperated well with me,"10,53%","89,47%"
+,Game Enjoyment,,
+Q21,I enjoyed playing the game,"0,00%","100,00%"
+Q22,I would like to play this game at home,"0,00%","100,00%"
